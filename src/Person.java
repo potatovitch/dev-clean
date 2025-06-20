@@ -77,6 +77,34 @@ public class Person {
         return affinite;
     }
 
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public LocalDate getdNaiss() {
+        return dNaiss;
+    }
+
+    public Pays getPays() {
+        return pays;
+    }
+
+    public Map<Critere, String> getCriteres() {
+        return criteres;
+    }
+
+    public ArrayList<String> getHobbies() {
+        return hobbies;
+    }
+
+
+
+
+
     
     
 }
