@@ -12,14 +12,28 @@ public class Person {
     private ArrayList<String> hobbies;
 
     public Person(String nom, String prenom, LocalDate dNaiss, Pays pays) {
+        this.nom = nom;
         this.prenom = prenom;
         this.dNaiss = dNaiss;
         this.pays = pays;
         this.criteres = new HashMap<Critere, String>();
+        this.hobbies = new ArrayList<String>();
     }
 
     public boolean addCritere(Critere c) {
         return this.criteres.put(c, "" + c.getType()) != null;
+    }
+
+    public void addHobby(String hobby) {
+        if (!this.hobbies.contains(hobby)) {
+            this.hobbies.add(hobby);
+        }
+    }
+
+    public void addHobby(ArrayList<String> hobbies) {
+        for (String hobby : hobbies) {
+            addHobby(hobby);
+        }
     }
 
     /**
@@ -101,10 +115,4 @@ public class Person {
         return hobbies;
     }
 
-
-
-
-
-    
-    
 }

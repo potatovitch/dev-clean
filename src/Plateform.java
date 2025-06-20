@@ -15,12 +15,12 @@ public class Plateform {
         this.listPersonnes = new ArrayList<Person>();
         this.listPairs = new ArrayList<Pair>();
         try {
-            
+            listPersonnes = loadPersons(null);
         } catch (Exception e) {
             e.getMessage();
         }
         try {
-            
+            listPairs = loadPairs(null);
         } catch (Exception e) {
             e.getMessage();
         }
@@ -92,5 +92,10 @@ public class Plateform {
 
     public ArrayList<Person> getListPersonnes() {
         return listPersonnes;
+    }
+
+    public Pair[] getListPairs() {
+        Pair[] pairsArray = new Pair[listPairs.size()];
+        return listPairs.toArray(pairsArray);
     }
 }
