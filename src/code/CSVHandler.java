@@ -45,14 +45,12 @@ public class CSVHandler {
     /**
      * charge les personnes et les paires depuis un fichier CSV
      */
-    public void loadFromCSV(String filePath, Plateform platform) {
-        ArrayList<Person> persons = loadPersonsFromCSV(filePath);
-        for (Person p : persons) {
-            platform.addPerson(p);
-        }
+    public void loadFromCSV(String filePath) {
+        loadPairsFromCSV(filePath);
+        loadPersonsFromCSV(filePath);
     }
 
-    public ArrayList<Person> loadPersonsFromCSV(String filePath) {
+    public static ArrayList<Person> loadPersonsFromCSV(String filePath) {
         ArrayList<Person> persons = new ArrayList<Person>();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -74,7 +72,7 @@ public class CSVHandler {
         return persons;
     }
 
-    public ArrayList<Pair> loadPairsFromCSV(String filePath) {
+    public static ArrayList<Pair> loadPairsFromCSV(String filePath) {
         ArrayList<Pair> pairs = new ArrayList<Pair>();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -97,8 +95,5 @@ public class CSVHandler {
         }
         return pairs;
     }
-
-    
-    
 
 }

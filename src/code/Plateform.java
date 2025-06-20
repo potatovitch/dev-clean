@@ -1,11 +1,5 @@
 package code;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 // stocke les personnes et les paires
@@ -17,61 +11,23 @@ public class Plateform {
         Plateform.listPersonnes = new ArrayList<Person>();
         Plateform.listPairs = new ArrayList<Pair>();
         try {
-            listPersonnes = loadPersons(null);
-        } catch (Exception e) {
-            e.getMessage();
-        }
-        try {
-            listPairs = loadPairs(null);
+            loadFromCSV();
         } catch (Exception e) {
             e.getMessage();
         }
     }
 
-
-    ///// sauvegarde et chargement de la plateforme (à revoir j'ai pas checké + pas de csv ici) /////
-    ///// ça va probablement degager /////
-
-    public static ArrayList<Person> loadPersons(File file) {
-        ArrayList<Person> persons = new ArrayList<Person>();
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-            persons = (ArrayList<Person>) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            e.getMessage();
-        }
-        return persons;
+    public void loadFromCSV() {
+       loadPairsFromCSV("paires.csv");
+       loadPersonsFromCSV("personnes.csv");
     }
 
-    public static ArrayList<Pair> loadPairs(File file) {
-        ArrayList<Pair> pairs = new ArrayList<Pair>();
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-            pairs = (ArrayList<Pair>) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            e.getMessage();
-        }
-        return pairs;
+    public ArrayList<Person> loadPersonsFromCSV(String filePath) {
+        return CSVHandler.loadPersonsFromCSV(filePath);
     }
-
-
-    public void savePersons(File file) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
-            oos.writeObject(Plateform.listPersonnes);
-        } catch (IOException e) {
-            System.err.println("Erreur lors de la sauvegarde des personnes : " + e.getMessage());
-        }
+    public ArrayList<Pair> loadPairsFromCSV(String filePath) {
+        return CSVHandler.loadPairsFromCSV(filePath);
     }
-
-    public void savePairs(File file) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
-            oos.writeObject(Plateform.listPairs);
-        } catch (IOException e) {
-            System.err.println("Erreur lors de la sauvegarde des paires : " + e.getMessage());
-        }
-    }
-
-    ///// sauvegarde et chargement de la plateforme (à revoir j'ai pas checké) /////
-
-
 
     public boolean addPerson(Person p) {
         return Plateform.listPersonnes.add(p);
