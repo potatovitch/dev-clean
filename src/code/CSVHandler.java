@@ -57,17 +57,25 @@ public class CSVHandler {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] cells = line.split(", ");
-                if (cells.length == 5) {    // cinq colonnes attendues
+                if (cells.length == 9) {    // neuf colonnes attendues
                     String nom = cells[0];  // premier élément : nom
                     String prenom = cells[1]; // deuxième élément : prénom
                     LocalDate dNaiss = LocalDate.parse(cells[2]);   // troisième élément : date de naissance
                     Pays pays = Pays.valueOf(cells[3]); // quatrième élément : pays
                     boolean isHost = Boolean.parseBoolean(cells[4]);      // cinquieme élément : est un host ?
-                    
+                    Gender gender = Gender.valueOf(cells[5]);             // sixieme element : genre de la personne
+                    Gender pairGender = Gender.valueOf(cells[6]);         // septieme element : genre du correspondant
+                    boolean animal = Boolean.parseBoolean(cells[7]);      // huitieme element : hasAnimal ou hasAllergy (en foncion de la personne)
+                    ArrayList<String> listFood = new ArrayList<String>();       // neuvieme element : GuestFood ou HostFood (en foncion de la personne)
+                    String[] temp = cells[8].split(", ");
+                    for (String food : temp) {
+                        listFood.add(food);
+                    }
+
                     if (isHost){
-                        persons.add(new Host(nom, prenom, dNaiss, pays)); 
+                        persons.add(new Host(nom, prenom, dNaiss, pays, gender, pairGender, animal, listFood)); 
                     }else{
-                        persons.add(new Guest(nom, prenom, dNaiss, pays));
+                        persons.add(new Guest(nom, prenom, dNaiss, pays, gender, pairGender, animal, listFood));
                     }
                 }
             }

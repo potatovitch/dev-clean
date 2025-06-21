@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 public class Guest extends Person{
 
-    public Guest(String nom, String prenom, LocalDate dNaiss, Pays pays, Gender gender, Gender pairGender, ArrayList<String> listGuestFood) {
+    public Guest(String nom, String prenom, LocalDate dNaiss, Pays pays, Gender gender, Gender pairGender, boolean hasAllergy, ArrayList<String> listGuestFood) {
         super(nom, prenom, dNaiss, pays);
         super.isHost = false;
-        super.critere = new GuestCritere(gender, pairGender, isHost, listGuestFood);
+        super.critere = new GuestCritere(gender, pairGender, hasAllergy, listGuestFood);
     }
 
      /**
