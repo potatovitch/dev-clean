@@ -40,6 +40,7 @@ public class Person {
 
     /**
      * Vérifie si la personne respecte les contraintes redhibitoires
+     * le but est d'empêcher les appariements entre personnes qui ne sont stictement pas compatibles
      */
     public boolean isCompatible(Person p){
         for (Critere c : criteres.keySet()) {
@@ -61,7 +62,8 @@ public class Person {
 
 
     /**
-     * Calcul l'affinité entre deux personnes ----->  TODO: mettre les variables des poids a par
+     * Calcul l'affinité entre deux personnes ----->  TODO: mettre les variables des poids a par + rajouter la gestion de l'écart d'age
+     * le but est de calculer l'affinité entre deux personnes pour les apparier ensuite de manière optimale
      */
     public int calculerAffinite(Person p){
         int affinite = 0;
@@ -93,6 +95,7 @@ public class Person {
         return affinite;
     }
 
+    // Getters
     public String getNom() {
         return nom;
     }

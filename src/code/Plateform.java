@@ -3,6 +3,7 @@ package code;
 import java.util.ArrayList;
 
 // stocke les personnes et les paires
+// les changements concernant les etudiants et les appariements sont faits ici, puis seront ensuite utilisés dans Controller pour l'affichage dans l'interface
 public class Plateform {
     private static ArrayList<Person> listPersonnes;
     private static ArrayList<Pair> listPairs;
