@@ -22,7 +22,7 @@ public class Controller {
     Label botLabel;
 
     /* center Pane */
-    Pane centerPane;
+    Pane centerPane;        // jsp si on le garde ou si on peut faire sans stocker les tableview dedans
     // Gestion des adolescents      (table d'affichage des etudiants)
     TableView<Person> adolescentTableView;
     ColumnConstraints prenom, nom, pays, criteres;      
