@@ -18,14 +18,18 @@ public class Pair {
         if (person1 == null || person2 == null) {
             throw new IllegalArgumentException("une personne ne peut pas être nulle");
         }
-        this.pair.put(person1, person2);
+        if (person1.isCompatible(person2) && !pair.containsKey(person1) && !pair.containsValue(person2)){
+            this.pair.put(person1, person2);
+        }
     }
 
     public static void put(HashMap<Person, Person> pair, Person person1, Person person2) throws IllegalArgumentException {
         if (person1 == null || person2 == null) {
             throw new IllegalArgumentException("une personne ne peut pas être nulle");
         }
-        pair.put(person1, person2);
+        if (person1.isCompatible(person2) && !pair.containsKey(person1) && !pair.containsValue(person2)){
+            pair.put(person1, person2);
+        }
     }
 
     public boolean isCompatible(Person p1, Person p2) {

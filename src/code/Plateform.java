@@ -72,6 +72,8 @@ public class Plateform {
         return null;
     }
 
-    // TODO : a faire   appariementOptimisé
-
+    
+    public void appariementOptimise(){
+        // TODO : a faire   appariementOptimisé (truc de graphe avec les matrices)
+    }
 }
