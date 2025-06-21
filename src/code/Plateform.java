@@ -72,4 +72,6 @@ public class Plateform {
         return null;
     }
 
+    // TODO : a faire   appariementOptimisé
+
 }

@@ -1,51 +1,43 @@
 package code;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public abstract class Person {
     private String nom;
     private String prenom;
     private LocalDate dNaiss;
     private Pays pays;
 
-    private ArrayList<String> hobbies;
-    private ArrayList<LocalDate> historique;
+    protected boolean isHost;                       // initialisé dans Host ou Guest
+    protected Critere critere;           // initialisé dans Host ou Guest
 
-
-    public Person(String nom, String prenom, LocalDate dNaiss, Pays pays, ArrayList<String> hobbies, ArrayList<LocalDate> historique) {
+    public Person(String nom, String prenom, LocalDate dNaiss, Pays pays) {
         this.nom = nom;
         this.prenom = prenom;
         this.dNaiss = dNaiss;
         this.pays = pays;
-        this.hobbies = hobbies;
-        this.historique = historique;
     }
 
-    public Person(String nom, String prenom, LocalDate dNaiss, Pays pays) {
-        this(nom, prenom, dNaiss, pays, new ArrayList<String>(),new ArrayList<LocalDate>());
-    }
-
-    public void addHobby(String hobby) {
-        if (!this.hobbies.contains(hobby)) {
-            this.hobbies.add(hobby);
+    /*
+     * donne l'écart d'age sous forme de date (un peu brouillon dans la logique)
+     */
+    public LocalDate calculerEcartAge(Person p) {
+        if (this.dNaiss.compareTo(p.dNaiss) > 0){
+            return this.dNaiss.minusYears(p.dNaiss.getYear()).minusMonths(p.dNaiss.getMonthValue()).minusDays(p.dNaiss.getDayOfMonth());
+        }else if (this.dNaiss.compareTo(p.dNaiss) < 0){
+            return p.dNaiss.minusYears(this.dNaiss.getYear()).minusMonths(this.dNaiss.getMonthValue()).minusDays(this.dNaiss.getDayOfMonth());
+        }else{
+            return LocalDate.of(0, 0, 0);
         }
     }
 
-    public void addHobby(ArrayList<String> hobbies) {
-        for (String hobby : hobbies) {
-            addHobby(hobby);
-        }
-    }
-
-    public void addHistory(LocalDate date){
-        historique.add(date);
+    public boolean isEcartTropGrand(Person p){
+        // 1 an et demi et un jour
+        return LocalDate.of(1, 6, 1).compareTo(dNaiss) < 0;
     }
 
     public abstract int calculerAffinite(Person p);
     public abstract boolean isCompatible(Person p);
-    public abstract HashMap<Critere, String> getCriteres();
+    public abstract Critere getCriteres();
 
     // Getters
     public String getNom() {
@@ -64,11 +56,5 @@ public abstract class Person {
         return pays;
     }
 
-    public ArrayList<String> getHobbies() {
-        return hobbies;
-    }
-    public ArrayList<LocalDate> getHistorique() {
-        return historique;
-    }
 
 }

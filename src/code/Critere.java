@@ -1,47 +1,58 @@
 package code;
 
-public enum Critere {
-    GUEST_ANIMAL_ALLERGY,
-    HOST_HAS_ANIMAL,
-    GUEST_FOOD,
-    HOST_FOOD,
-    HAS_HOBBIES,
-    GENDER,
-    PAIR_GENDER,
-    HISTORY;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
-    public char getType() {
-        switch(this) {
-            case GUEST_ANIMAL_ALLERGY:
-            case HOST_HAS_ANIMAL:
-            case HAS_HOBBIES:
-                return 'B'; // Booléen
-            case GUEST_FOOD:
-            case HOST_FOOD:
-            case GENDER:
-            case PAIR_GENDER:
-            case HISTORY:
-                return 'T'; // Texte
-            default:
-                return 'T';
-        }
+public class Critere {
+    private ArrayList<String> listHobbies;
+    private ArrayList<LocalDate> historique;
+    private Gender gender;
+    private Gender pairGender;
+
+    public Critere(Gender gender, Gender paiGender, ArrayList<String> listHobbies, ArrayList<LocalDate> historique) {
+        this.listHobbies = listHobbies;
+        this.historique = historique;
+        this.gender = gender;
+        this.pairGender = paiGender;
     }
 
-    public String getPersonType(){
-        switch(this) {
-            case GUEST_ANIMAL_ALLERGY:
-            case GUEST_FOOD:
-                return "Guest";
-            case HOST_HAS_ANIMAL:
-            case HOST_FOOD:
-                return "Host";
-            case HAS_HOBBIES:
-            case GENDER:
-            case PAIR_GENDER:
-            case HISTORY:
-                return "Person";
-            default:
-                return "Person";
+    public Critere(Gender gender, Gender paiGender) {
+        this(gender, paiGender, new ArrayList<String>() , new ArrayList<LocalDate>());
+    }
+
+    public void addHobby(String hobby) {
+        if (!this.listHobbies.contains(hobby)) {
+            this.listHobbies.add(hobby);
         }
+    }
+    public void addHobby(ArrayList<String> hobbies) {
+        for (String hobby : hobbies) {
+            addHobby(hobby);
+        }
+    }
+    public void addHistory(LocalDate date){
+        historique.add(date);
+    }
+
+    public boolean isGoodPairingGender(Critere c){
+        return this.pairGender.equals(c.gender) && this.gender.equals(c.pairGender);
+    }
+
+    public boolean isGoodPairingHobbies(Critere c){
+        for (String hobby : this.getHobbies()) {
+            if (c.getHobbies().contains(hobby)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    
+
+    public ArrayList<String> getHobbies() {
+        return listHobbies;
+    }
+    public ArrayList<LocalDate> getHistorique() {
+        return historique;
     }
 }

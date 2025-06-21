@@ -57,12 +57,18 @@ public class CSVHandler {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] cells = line.split(", ");
-                if (cells.length == 4) {    // quatre colonnes attendues
+                if (cells.length == 5) {    // cinq colonnes attendues
                     String nom = cells[0];  // premier élément : nom
                     String prenom = cells[1]; // deuxième élément : prénom
                     LocalDate dNaiss = LocalDate.parse(cells[2]);   // troisième élément : date de naissance
                     Pays pays = Pays.valueOf(cells[3]); // quatrième élément : pays
-                    persons.add(new Person(nom, prenom, dNaiss, pays));
+                    boolean isHost = Boolean.parseBoolean(cells[4]);      // cinquieme élément : est un host ?
+                    
+                    if (isHost){
+                        persons.add(new Host(nom, prenom, dNaiss, pays)); 
+                    }else{
+                        persons.add(new Guest(nom, prenom, dNaiss, pays));
+                    }
                 }
             }
             reader.close();

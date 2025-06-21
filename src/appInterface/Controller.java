@@ -20,6 +20,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Controller {
+    // TODO : fix les changeListener
+
+
     @FXML
     /* top */
     Tab gestionTab, appariementTab, configurationTab;
