@@ -16,7 +16,7 @@ public class Host extends Person{
      * Vérifie si la personne respecte les contraintes redhibitoires
      * le but est d'empêcher les appariements entre personnes qui ne sont stictement pas compatibles
      */
-    @Override       // TODO : a faire + voir si pas move dans Critere
+    @Override     
     public boolean isCompatible(Person p) {
         if (p.getClass() == Host.class) {
             return false; // ne pas apparier deux guests
