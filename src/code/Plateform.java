@@ -75,5 +75,17 @@ public class Plateform {
     
     public void appariementOptimise(){
         // TODO : a faire   appariementOptimisé (truc de graphe avec les matrices)
+
+        // genre tu fait le calcul de la matrice avec deux clones de listPersonne et tu stocke le resultat dans une matrice de int[listPersonne.size()]
+
+        /*
+         * le truc comme ça de graphe
+         * 
+         *  ( , , , , , )
+         *  ( , , , , , )
+         *  ( , , , , , )
+         *  ( , , , , , )
+         *  ( , , , , , )
+         */
     }
 }
