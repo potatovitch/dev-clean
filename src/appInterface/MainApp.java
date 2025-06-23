@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 /**
  * Charge et lance l'application
  */
-public class FXMLloader extends Application {
+public class MainApp extends Application {
 
     public void start(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader();

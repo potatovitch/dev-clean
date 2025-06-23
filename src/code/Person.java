@@ -7,7 +7,7 @@ public abstract class Person {
     private LocalDate dNaiss;
     private Pays pays;
 
-    protected boolean isHost;            // initialisé dans Host ou Guest
+    public boolean isHost;            // initialisé dans Host ou Guest
     protected Critere critere;           // initialisé dans Host ou Guest
 
     public Person(String nom, String prenom, LocalDate dNaiss, Pays pays) {
