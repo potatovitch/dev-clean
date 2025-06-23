@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import code.Critere;
+import code.Gender;
 import code.Guest;
 import code.Hobby;
 import code.Host;
@@ -13,8 +14,8 @@ import code.Person;
 
 public class testPerson {
     public static void main(String[] args) {
-        Person host = new Host("Doe", "John", LocalDate.of(1990, 1, 1), Pays.FRANCE);
-        Person guest = new Guest("Smith", "Jane", LocalDate.of(1992, 2, 2), Pays.ALLEMAGNE);
+        Person host = new Host("Doe", "John", LocalDate.of(1990, 1, 1), Pays.FRANCE, Gender.MALE, Gender.MALE, false, null);
+        Person guest = new Guest("Smith", "Jane", LocalDate.of(1992, 2, 2), Pays.ALLEMAGNE, Gender.FEMALE, Gender.FEMALE, false, null);
 
         HashMap<Critere, String> criteresHost = new HashMap<Critere, String>();
         criteresHost.put(Critere.HOST_HAS_ANIMAL, "true");

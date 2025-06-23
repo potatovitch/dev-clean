@@ -8,18 +8,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class Controller {
-    // TODO : fix les changeListener
-
 
     @FXML
-    /* top */
-    Tab gestionTab, appariementTab, configurationTab;
+    private TabPane tabPane;
+
+    @FXML
+    private Tab tabGestion, tabAppariement, tabConfiguration;
 
     /* bot */
     Label botLabel;
@@ -71,14 +72,10 @@ public class Controller {
         // TODO
     }
     public void importerButtonPressed(ActionEvent event) {
-        importerButton.setOnMousePressed(e -> {
-
-        });
+        // TODO
     }
     public void exporterButtonPressed(ActionEvent event) {
-        exporterButton.setOnMousePressed(e -> {
-
-        });
+        // TODO
     }
 
     // Appariement

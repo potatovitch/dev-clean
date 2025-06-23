@@ -18,19 +18,19 @@
    <top>
       <ButtonBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="28.0" prefWidth="642.0" BorderPane.alignment="CENTER_LEFT">
          <buttons>
-            <TabPane prefHeight="28.0" prefWidth="633.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="tabPane" prefHeight="28.0" prefWidth="633.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Gestion des adolescents">
+                <Tab fx:id="tabGestion" text="Gestion des adolescents">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="613.0" />
                   </content>
                 </Tab>
-                <Tab text="Appariement">
+                <Tab fx:id="tabAppariement" text="Appariement">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                   </content>
                 </Tab>
-                  <Tab text="Configuration">
+                  <Tab fx:id="tabConfiguration" text="Configuration">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                      </content>
@@ -87,12 +87,12 @@
       </VBox>
    </right>
    <center>
-      <TableView prefHeight="416.0" prefWidth="481.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableView" prefHeight="416.0" prefWidth="481.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn prefWidth="75.0" text="Prénom" />
           <TableColumn prefWidth="75.0" text="Nom" />
             <TableColumn prefWidth="75.0" text="Pays" />
-            <TableColumn prefWidth="75.0" text="Critètes" />
+            <TableColumn prefWidth="75.0" text="Critères" />
         </columns>
       </TableView>
    </center>
