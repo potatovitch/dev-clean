@@ -2,6 +2,7 @@ package code;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import appInterface.Controller;
 
 public class Host extends Person{
     
@@ -9,17 +10,16 @@ public class Host extends Person{
         super(nom, prenom, dNaiss, pays);
         super.isHost = true;
         super.critere = new HostCritere(gender, pairGender, hasAnimal, listHostFood);
-
     }
 
-     /**
+    /**
      * Vérifie si la personne respecte les contraintes redhibitoires
-     * le but est d'empêcher les appariements entre personnes qui ne sont stictement pas compatibles
+     * le but est d'empêcher les appariements entre personnes qui ne sont strictement pas compatibles
      */
     @Override     
     public boolean isCompatible(Person p) {
         if (p.getClass() == Host.class) {
-            return false; // ne pas apparier deux guests
+            return false; // ne pas apparier deux hosts
         }
         if (this.isEcartTropGrand(p)){
             return false;
@@ -32,7 +32,7 @@ public class Host extends Person{
         if (!crit.getHistorique().isEmpty() && !pCrit.getHistorique().isEmpty()){
             for (LocalDate date : crit.getHistorique()) {
                 if (pCrit.getHistorique().contains(date)){
-                    return false;   // ce sont deja rencontrés
+                    return false;   // se sont déjà rencontrés
                 }
             }
         }
@@ -40,9 +40,8 @@ public class Host extends Person{
         return true;
     }
     
-
-     /**
-     * Calcul l'affinité entre deux personnes ----->  TODO : mettre les variables des poids a par + rajouter la gestion de l'écart d'age
+    /**
+     * Calcule l'affinité entre deux personnes (plus le score est élevé, plus l'affinité est bonne)
      * le but est de calculer l'affinité entre deux personnes pour les apparier ensuite de manière optimale
      */
     @Override 
@@ -50,14 +49,28 @@ public class Host extends Person{
         int affinite = 0;
         HostCritere crit = (HostCritere)this.getCriteres();
         GuestCritere pCrit = (GuestCritere)p.getCriteres();
-        if (!crit.isGoodPairingGender(pCrit)){
-            affinite += 20;
+        
+        // Bonus pour compatibilité de genre
+        if (crit.isGoodPairingGender(pCrit)){
+            affinite += (int)Controller.getPoidsGender();
         }
-        if (!crit.isGoodPairingHobbies(pCrit)){
-            affinite += 15;
+        
+        // Bonus pour hobbies en commun
+        if (crit.isGoodPairingHobbies(pCrit)){
+            affinite += (int)Controller.getPoidsHobby();
         }
-        if (!crit.isGoodFood(pCrit)){
-            affinite += 10;
+        
+        // Bonus pour compatibilité alimentaire
+        if (crit.isGoodFood(pCrit)){
+            affinite += (int)Controller.getPoidsFood();
+        }
+        
+        // Bonus pour âge proche (moins l'écart est grand, plus le bonus est important)
+        int ecartAge = this.calculerEcartAge(p);
+        if (ecartAge == 0) {
+            affinite += (int)Controller.getPoidsAge();
+        } else if (ecartAge == 1) {
+            affinite += (int)(Controller.getPoidsAge() * 0.5);
         }
         
         return affinite;
@@ -68,6 +81,3 @@ public class Host extends Person{
         return critere;
     }
 }
-
-
-

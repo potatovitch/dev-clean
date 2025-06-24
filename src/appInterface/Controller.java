@@ -99,7 +99,7 @@ public class Controller implements Initializable {
         
         affiniteColumn.setCellValueFactory(cellData -> {
             Pair pair = cellData.getValue();
-            int affinite = pair.calculerAffinite(pair.getPerson1(), pair.getPerson2());
+            int affinite = pair.getPerson1().calculerAffinite(pair.getPerson2());
             return new javafx.beans.property.SimpleIntegerProperty(affinite).asObject();
         });
 
@@ -108,6 +108,27 @@ public class Controller implements Initializable {
         
         adolescentTableView.setItems(personnes);
         pairTableView.setItems(paires);
+        
+        if (existingPerson != null) {
+            prenomField.setText(existingPerson.getPrenom());
+            nomField.setText(existingPerson.getNom());
+            dateNaissancePicker.setValue(existingPerson.getdNaiss());
+            paysCombo.setValue(existingPerson.getPays());
+            
+            Critere criteres = existingPerson.getCriteres();
+            genderCombo.setValue(criteres.getGender());
+            pairGenderCombo.setValue(criteres.getPairGender());
+            isHostCheckBox.setSelected(existingPerson.isHost);
+        }
+
+        if (existingPerson != null) {
+            // Mise à jour des propriétés de la personne existante
+            existingPerson.setNom(nom);
+            existingPerson.setPrenom(prenom);
+            existingPerson.setDNaiss(dateNaissance);
+            existingPerson.setPays(pays);
+            return existingPerson;
+        }
     }
 
     private void initializeSliders() {
