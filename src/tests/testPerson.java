@@ -18,20 +18,20 @@ public class testPerson {
         Person guest = new Guest("Smith", "Jane", LocalDate.of(1992, 2, 2), Pays.ALLEMAGNE, Gender.FEMALE, Gender.FEMALE, false, null);
 
         HashMap<Critere, String> criteresHost = new HashMap<Critere, String>();
-        criteresHost.put(Critere.HOST_HAS_ANIMAL, "true");
-        criteresHost.put(Critere.HOST_FOOD, "FRANCE");
-        criteresHost.put(Critere.HAS_HISTORY, "true");
-        criteresHost.put(Critere.PAIR_GENDER, "male");
+        //criteresHost.put(Critere.HOST_HAS_ANIMAL, "true");
+        //criteresHost.put(Critere.HOST_FOOD, "FRANCE");
+        //criteresHost.put(Critere.HAS_HISTORY, "true");
+        //criteresHost.put(Critere.PAIR_GENDER, "male");
         HashMap<Critere, String> criteresGuest = new HashMap<Critere, String>();
-        criteresGuest.put(Critere.HOST_HAS_ANIMAL, "false");
-        criteresGuest.put(Critere.GENDER, "female");
+        //criteresGuest.put(Critere.HOST_HAS_ANIMAL, "false");
+        //criteresGuest.put(Critere.GENDER, "female");
 
         ArrayList<String> hobbiesHost = new ArrayList<String>();
-        hobbiesHost.add(Hobby.HOBBY1.getLabel());
-        hobbiesHost.add(Hobby.HOBBY2.getLabel());
+        //hobbiesHost.add(Hobby.HOBBY1.getLabel());
+        //hobbiesHost.add(Hobby.HOBBY2.getLabel());
         ArrayList<String> hobbiesGuest = new ArrayList<String>();
-        hobbiesGuest.add(Hobby.HOBBY1.getLabel());
-        hobbiesGuest.add(Hobby.HOBBY3.getLabel());
+        //hobbiesGuest.add(Hobby.HOBBY1.getLabel());
+        //hobbiesGuest.add(Hobby.HOBBY3.getLabel());
 
         
     }

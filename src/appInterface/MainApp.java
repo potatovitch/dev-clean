@@ -1,4 +1,4 @@
-package appInterface;   // pas interface java aime pas
+package appInterface;
 
 import java.io.IOException;
 import javafx.application.Application;
@@ -15,7 +15,7 @@ public class MainApp extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader();
 
-        java.net.URL fxmlFileUrl = getClass().getResource("linguaConnect.fxml");
+        java.net.URL fxmlFileUrl = getClass().getResource("/appInterface/linguaConnect.fxml");
 
         if (fxmlFileUrl == null) {
             System.out.println("Impossible de charger le fichier fxml");
@@ -27,7 +27,6 @@ public class MainApp extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("LinguaConnect");
-        // scene.getStylesheets().add("css/bar.css");
         stage.show();
     }
 
