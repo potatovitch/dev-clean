@@ -3,16 +3,15 @@ package code;
 import java.util.ArrayList;
 
 public class Critere {
-    protected String gender;        // Changé en protected pour accès depuis les autres-classes
-    protected String pairGender;    // Changé en protected pour accès depuis les autres-classes
+    protected String gender;
+    protected String pairGender;
     protected boolean hasAllergy;
     protected boolean hasAnimal;
 
     protected ArrayList<String> listGuestFoodConstraint;
     protected ArrayList<String> listHostFood;
     protected ArrayList<String> listHobbies;
-    protected ArrayList<String> historique;           // liste des correspondants
-
+    protected ArrayList<String> historique;
 
     public Critere(String gender, String pairGender, boolean hasAllergy, boolean hasAnimal,
                     ArrayList<String> listGuestFoodConstraint, ArrayList<String> listHostFood,
@@ -60,7 +59,6 @@ public class Critere {
         return trimList(ch);
     }
 
-    // pour retirer le dernier ","
     public static String trimList(String ch){
         return ch.substring(0, ch.length()-1);
     } 

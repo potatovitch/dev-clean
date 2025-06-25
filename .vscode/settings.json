@@ -10,6 +10,7 @@
         "d:\\Documents\\BUT-1\\Sae_dev\\dev-clean\\lib\\javafx.web.jar",
         "d:\\Documents\\BUT-1\\Sae_dev\\dev-clean\\lib\\javafx.fxml.jar",
         "d:\\Documents\\BUT-1\\Sae_dev\\dev-clean\\lib\\javafx.graphics.jar",
-        "d:\\Documents\\BUT-1\\Sae_dev\\dev-clean\\lib\\javafx.swing.jar"
+        "d:\\Documents\\BUT-1\\Sae_dev\\dev-clean\\lib\\javafx.swing.jar",
+        "test-lib\\**\\*.jar"
     ]
 }

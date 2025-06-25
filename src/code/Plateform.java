@@ -105,7 +105,6 @@ public class Plateform {
     }
 
     public void appariementOptimise() {
-        // Vider la liste des paires existantes
         listPairs.clear();
         listPairs.clear();
         
@@ -122,6 +121,4 @@ public class Plateform {
 
         
     }
-
-
 }
