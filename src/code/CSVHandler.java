@@ -25,7 +25,7 @@ public class CSVHandler {
                 StringBuilder foodList = new StringBuilder();
                 if (p.isHost) {
                     HostCritere crit = (HostCritere) p.getCriteres();
-                    for (String food : crit.getListHostFood()) {
+                    for (Food food : crit.getListHostFood()) {
                         if (foodList.length() > 0) foodList.append(";");
                         foodList.append(food);
                     }
@@ -34,7 +34,7 @@ public class CSVHandler {
                                crit.aUnAnimal() + "," + foodList.toString() + "\n");
                 } else {
                     GuestCritere crit = (GuestCritere) p.getCriteres();
-                    for (String food : crit.getListGuestFood()) {
+                    for (Food food : crit.getListGuestFood()) {
                         if (foodList.length() > 0) foodList.append(";");
                         foodList.append(food);
                     }
