@@ -45,7 +45,6 @@ public class ConfigurationController {
         this.mainController = mc;
     }
 
-    // Getters statiques pour ces poids
     public static double getPoidsHobby() { return poidsHobby; }
     public static double getPoidsGender() { return poidsGender; }
     public static double getPoidsFood() { return poidsFood; }

@@ -183,10 +183,8 @@ public class GestionPersonnesController {
             }
         }
     }
-    // reprennent la logique similaire en déléguant aussi à plateform
-    // ...
-
-        /**
+    
+    /**
      * Création d'une boîte de dialogue afin d'ajouter un nouvel adolescent au CSV.
      * @param existingPerson
      * @return

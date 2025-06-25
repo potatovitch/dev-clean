@@ -41,7 +41,7 @@ public class Pair {
     }
 
     public Person getPerson1() {
-        return (Person) pair.keySet().toArray()[0]; // doit mettre en keyset pour avoir la clé
+        return (Person) pair.keySet().toArray()[0];
     }
 
     public Person getPerson2() {

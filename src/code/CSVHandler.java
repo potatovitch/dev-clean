@@ -17,7 +17,7 @@ public class CSVHandler {
         savePersonsToCSV(filePath);
         savePairsToCSV(filePath);
     }
-
+    
     public void savePersonsToCSV(String filePath){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write("Nom,Prénom,Date de Naissance,Pays,Est Hôte,Genre,Genre Recherché,Animal/Allergie,Nourriture\n");
@@ -78,10 +78,10 @@ public class CSVHandler {
             while ((line = reader.readLine()) != null) {
                 if (firstLine) {
                     firstLine = false;
-                    continue; // Skip header
+                    continue;
                 }
                 String[] cells = line.split(",");
-                if (cells.length >= 8) {    // au minimum 8 colonnes attendues
+                if (cells.length >= 8) {
                     String nom = cells[0].trim();
                     String prenom = cells[1].trim();
                     LocalDate dNaiss = LocalDate.parse(cells[2].trim());
@@ -122,7 +122,7 @@ public class CSVHandler {
             while ((line = reader.readLine()) != null) {
                 if (firstLine) {
                     firstLine = false;
-                    continue; // Skip header
+                    continue;
                 }
                 String[] cells = line.split(",");
                 if (cells.length >= 2) {

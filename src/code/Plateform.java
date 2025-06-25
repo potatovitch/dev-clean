@@ -6,7 +6,6 @@ public class Plateform {
     private ArrayList<Person> listPersonnes;
     private ArrayList<Pair> listPairs;
     
-    // Variables statiques pour les méthodes statiques
     private static ArrayList<Person> staticListPersonnes = new ArrayList<>();
     private static ArrayList<Pair> staticListPairs = new ArrayList<>();
 
@@ -88,7 +87,6 @@ public class Plateform {
         return this.listPairs;
     }
 
-    // Méthodes statiques requises par CSVHandler
     public static ArrayList<Person> getListPersonnesStatic() {
         return staticListPersonnes;
     }
@@ -116,14 +114,12 @@ public class Plateform {
     }
 
     public void appariementOptimise() {
-        // Vider la liste des paires existantes
         this.listPairs.clear();
         staticListPairs.clear();
         
         ArrayList<Person> hosts = new ArrayList<>();
         ArrayList<Person> guests = new ArrayList<>();
         
-        // Séparer les hosts et guests
         for (Person p : listPersonnes) {
             if (p.isHost) {
                 hosts.add(p);
@@ -132,7 +128,6 @@ public class Plateform {
             }
         }
         
-        // Appariement simple : pour chaque guest, trouver le meilleur host compatible
         ArrayList<Person> hostsUtilises = new ArrayList<>();
         
         for (Person guest : guests) {

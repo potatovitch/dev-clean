@@ -6,8 +6,8 @@ import java.util.ArrayList;
 public class Critere {
     private ArrayList<String> listHobbies;
     private ArrayList<LocalDate> historique;
-    protected Gender gender;        // Changé en protected pour accès depuis les sous-classes
-    protected Gender pairGender;    // Changé en protected pour accès depuis les sous-classes
+    protected Gender gender;        
+    protected Gender pairGender;   
 
     public Critere(Gender gender, Gender pairGender, ArrayList<String> listHobbies, ArrayList<LocalDate> historique) {
         this.listHobbies = listHobbies != null ? listHobbies : new ArrayList<>();
@@ -49,7 +49,6 @@ public class Critere {
         return false;
     }
 
-    // Getters
     public ArrayList<String> getHobbies() {
         return listHobbies;
     }

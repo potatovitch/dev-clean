@@ -50,22 +50,18 @@ public class Host extends Person{
         HostCritere crit = (HostCritere)this.getCriteres();
         GuestCritere pCrit = (GuestCritere)p.getCriteres();
         
-        // Bonus pour compatibilité de genre
         if (crit.isGoodPairingGender(pCrit)){
             affinite += (int)MainController.getPoidsGender();
         }
         
-        // Bonus pour hobbies en commun
         if (crit.isGoodPairingHobbies(pCrit)){
             affinite += (int)MainController.getPoidsHobby();
         }
         
-        // Bonus pour compatibilité alimentaire
         if (crit.isGoodFood(pCrit)){
             affinite += (int)MainController.getPoidsFood();
         }
         
-        // Bonus pour âge proche (moins l'écart est grand, plus le bonus est important)
         int ecartAge = this.calculerEcartAge(p);
         if (ecartAge == 0) {
             affinite += (int)MainController.getPoidsAge();
