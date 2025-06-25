@@ -1,5 +1,34 @@
 # Rapport SAE 2.01-2.02
 
+## Instructions
+
+## explication des classes
+
+le dévellopement de ce projet à été divisé en deux parties principales, le code et l'interface.
+
+### Code
+
+il y a 6 classes dans cette partie :
+
+- Person
+- Pair
+- Plateform
+- Critere
+- CSVHandler
+- Pays
+
+#### Person
+
+#### Pair
+
+#### Plateform
+
+#### Critere
+
+#### CSVHandler
+
+#### Pays
+
 ## Capture d'écran de l'application finale
 
 ![Capture d'écran de l'application](chemin/vers/image.ext)
@@ -11,6 +40,8 @@ Nous avons fait attention à la lisibilité de notre application avec une couleu
 Afin de ne pas surcharger les utilsateurs d'informations, nous avons décider de séparer les différentes parties de l'application dans trois tabs différentes. Cela permet également de fluidifier l'expérience utilisateur.
 
 ## Contribution de chaques membres
+
+la partie de code à principalement été réalisé pas Adam et la partie de l'interface par Martin.
 
 ## Informations mettant en valeur notre travail
 
