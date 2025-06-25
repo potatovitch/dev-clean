@@ -19,10 +19,13 @@ il y a 6 classes dans cette partie :
 
 #### Person
 
+classe qui s'occupe des personnes et des informations qui leur sont liées comme la vérification du respect des contraintes entre deux personnes, les calculs d'affinités ou le changement de la forme des informations.
 
+Pour cela, nous avons choisi de mettre les information concernant la personne et de rajouter une emcapsulation de Critère.
 
 #### Pair
 
+Classe qui permet l'association de deux personnes, avec en personne 1 l'hôte, et en personne 2, le visiteur.
 #### Plateform
 
 classe s'occupant d'une bonne partie des fonctions du controller.
