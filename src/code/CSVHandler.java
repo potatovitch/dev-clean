@@ -62,12 +62,12 @@ public class CSVHandler {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] cells = line.split(", ");
-                if (cells.length == 13) {    // dix colonnes attendues
-                    String nom = cells[0];  // premier élément : nom
-                    String prenom = cells[1]; // deuxième élément : prénom
-                    LocalDate dNaiss = LocalDate.parse(cells[2]);   // troisième élément : date de naissance
-                    Pays pays = Pays.valueOf(cells[3]); // quatrième élément : pays
-                    boolean isHost;          // cinquieme élément : est un host ?
+                if (cells.length == 13) {   
+                    String nom = cells[0];
+                    String prenom = cells[1];
+                    LocalDate dNaiss = LocalDate.parse(cells[2]);
+                    Pays pays = Pays.valueOf(cells[3]);
+                    boolean isHost;
                     if (cells[4].equals("yes")){
                         isHost = true;
                     }else{
@@ -103,9 +103,7 @@ public class CSVHandler {
                         listHistory.add(history);
                     }
 
-                    // creation des personnes
-                    persons.add(new Person(nom, prenom, dNaiss, pays, isHost, new Critere(gender, pairGender, hasAllergy, hasAnimal,
-                                                                listGuestFoodConstraint, listHostFood, listHobbies, listHobbies)));
+                    persons.add(new Person(nom, prenom, dNaiss, pays, isHost, new Critere(gender, pairGender, hasAllergy, hasAnimal, listGuestFoodConstraint, listHostFood, listHobbies, listHobbies)));
                 }
             }
         } catch (Exception e) {
