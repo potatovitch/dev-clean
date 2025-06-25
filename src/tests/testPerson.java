@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import code.Critere;
-import code.Gender;
 
 import code.Pays;
 import code.Person;
