@@ -23,7 +23,7 @@ public class CSVHandler {
             writer.write("Nom,Prénom,Date de Naissance,Pays,Est Hôte,Genre,Genre Recherché,Animal/Allergie,Nourriture\n");
             for (Person p : Plateform.getListPersonnesStatic()) {
                 Critere crit = p.critere;
-                writer.write(p.getNom() + ";" + p.getPrenom() + ";" + p.getdNaiss() + ";" + p.getPays() + p.isHost + crit.gender + ";" + crit.pairGender + ";" + 
+                writer.write(p.getNom() + ";" + p.getPrenom() + ";" + p.getdNaiss() + ";" + p.getPays() + p.isHost() + crit.gender + ";" + crit.pairGender + ";" + 
                                crit.hasAllergy + ";" + crit.hasAnimal + ";" + crit.toStringGuestFoodConstraint() + ";"
                                + crit.toStringHostFood() + ";"+ crit.toStringHobbies() + ";"+ crit.toStringHistory()
                                + "\n");

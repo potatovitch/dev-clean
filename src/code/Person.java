@@ -2,18 +2,16 @@ package code;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Person {
-    private static HashMap<String, String> infoPersonnes = new HashMap<String, String>();
+    private HashMap<String, String> infoPersonnes = new HashMap<>();
 
     private String nom;
     private String prenom;
     private LocalDate dNaiss;
     private Pays pays;
-    public boolean isHost;
-
+    private boolean isHost;
     protected Critere critere;
 
     public Person(String nom, String prenom, LocalDate dNaiss, Pays pays, boolean isHost, Critere crit) {
@@ -23,20 +21,8 @@ public class Person {
         this.pays = pays;
         this.isHost = isHost;
         this.critere = crit;
-
-        infoPersonnes.put(null, "T");        // nom 
-        infoPersonnes.put(null, "T");        // prenom
-        infoPersonnes.put(null, "D");        // dnaiss
-        infoPersonnes.put(null, "T");        // pays
-        infoPersonnes.put(null, "B");        // isHost
-        infoPersonnes.put(null, "T");        // gender
-        infoPersonnes.put(null, "T");        // pairGender
-        infoPersonnes.put(null, "B");        // isAlergique
-        infoPersonnes.put(null, "B");        // hasAnimal
-        infoPersonnes.put(null, "T");        // guestfood
-        infoPersonnes.put(null, "T");        // hostfood
-        infoPersonnes.put(null, "T");        // hobbies
-        infoPersonnes.put(null, "T");        // history
+        
+        updateInfo();
     }
 
     /**
@@ -55,27 +41,28 @@ public class Person {
     }
 
     public void updateInfo(){
-        HashMap<String, String> temp = new HashMap<String, String>();
+        infoPersonnes.clear();
 
-        temp.put(nom , "T");
-        temp.put(prenom , "T");
-        temp.put(String.valueOf(dNaiss) , "D");
-        temp.put(String.valueOf(pays) , "T");
-        temp.put(toStringBool(isHost) , "B");
-        temp.put(critere.gender , "T");
-        temp.put(critere.pairGender , "T");
-        temp.put(toStringBool(critere.hasAllergy) , "B");
-        temp.put(toStringBool(critere.hasAnimal) , "B");
-        temp.put(critere.toStringGuestFoodConstraint() , "T");
-        temp.put(critere.toStringHostFood() , "T");
-        temp.put(critere.toStringHobbies() , "T");
-        temp.put(critere.toStringHistory() , "T");
+        infoPersonnes.put("nom", nom);
+        infoPersonnes.put("prenom", prenom);
+        infoPersonnes.put("dateNaissance", dNaiss.toString());
+        infoPersonnes.put("pays", pays.toString());
+        infoPersonnes.put("isHost", toStringBool(isHost));
+        infoPersonnes.put("gender", critere.gender);
+        infoPersonnes.put("pairGender", critere.pairGender);
+        infoPersonnes.put("hasAllergy", toStringBool(critere.hasAllergy));
+        infoPersonnes.put("hasAnimal", toStringBool(critere.hasAnimal));
+        infoPersonnes.put("guestFood", critere.toStringGuestFoodConstraint());
+        infoPersonnes.put("hostFood", critere.toStringHostFood());
+        infoPersonnes.put("hobbies", critere.toStringHobbies());
+        infoPersonnes.put("history", critere.toStringHistory());
     }
 
     public String toStringBool(boolean b){
         if (b){
             return "yes";
-        }return "no";
+        }
+        return "no";
     }
 
     public boolean isCompatible(Person p){

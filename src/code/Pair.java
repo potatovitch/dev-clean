@@ -19,7 +19,7 @@ public class Pair {
             throw new IllegalArgumentException("une personne ne peut pas être nulle");
         }
         if (person1.isCompatible(person2) && !pair.containsKey(person1) && !pair.containsValue(person2)){
-            if (person1.isHost){
+            if (person1.isHost()){
                 this.pair.put(person1, person2);
             }else{
                 this.pair.put(person2, person1);

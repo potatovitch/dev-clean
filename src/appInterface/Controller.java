@@ -88,7 +88,7 @@ public class Controller implements Initializable {
         paysColumn.setCellValueFactory(new PropertyValueFactory<>("pays"));
         criteresColumn.setCellValueFactory(cellData -> {
             Person person = cellData.getValue();
-            String criteres = person.isHost ? "Hôte" : "Invité";
+            String criteres = person.isHost() ? "Hôte" : "Invité";
             return new javafx.beans.property.SimpleStringProperty(criteres);
         });
 
@@ -416,9 +416,9 @@ public class Controller implements Initializable {
                     }
 
                     if (isHost) {
-                        return new Person(nom, prenom, dateNaissance, pays, gender, pairGender, false, new ArrayList<>());
+                        return new Person(nom, prenom, dateNaissance, pays, gender, pairGender, true, new ArrayList<String>());
                     } else {
-                        return new Person(nom, prenom, dateNaissance, pays, gender, pairGender, false, new ArrayList<>());
+                        return new Person(nom, prenom, dateNaissance, pays, gender, pairGender, false, new ArrayList<String>());
                     }
                 } catch (Exception e) {
                     updateBotLabel("Erreur lors de la création de la personne: " + e.getMessage());

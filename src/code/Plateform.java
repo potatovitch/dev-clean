@@ -113,7 +113,7 @@ public class Plateform {
         ArrayList<Person> guests = new ArrayList<>();
 
         for (Person p : listPersonnes) {
-            if (p.isHost) {
+            if (p.isHost()) {
                 hosts.add(p);
             } else {
                 guests.add(p);
