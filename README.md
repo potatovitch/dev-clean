@@ -4,7 +4,7 @@
 
 ## explication des classes
 
-le dévellopement de ce projet à été divisé en deux parties principales, le code et l'interface.
+le développement de ce projet à été divisé en deux parties principales, le code et l'interface.
 
 ### Code
 
@@ -30,7 +30,7 @@ Pour cela, nous avons opté pour l'utilisation d'une HashMap de 2 personnes.
 
 #### Plateform
 
-Plateform est la classe qui stocke les liste d'étudiants et de paires,et effectue les appariements. Cette classe nous permet de faires des modification sur les listes d'étudiants et de paires avant de les sauvegarder dans des fichier csv. 
+Plateform est la classe qui stocke les liste d'étudiants et de paires,et effectue les appariements. Cette classe nous permet de faires des modification sur les listes d'étudiants et de paires avant de les sauvegarder dans des fichier csv.
 
 Pour cela, nous avons choisi de faire 2 ArrayList, une qui s'occupe de la liste des étudiants et l'autre, de la liste des paires.
 
@@ -44,7 +44,7 @@ CSVHandler est la classe qui permet de load ou de save les etudiants et paires d
 
 #### changements au cour du projet
 
-nous avons décidé de repartir de zéro pour cette version du projet, et de repenser/restructurer ce que nous avions fait. nous avons choisi de séparer les Persons en deux catégories, Host et Guest. 
+nous avons décidé de repartir de zéro pour cette version du projet, et de repenser/restructurer ce que nous avions fait. nous avons choisi de séparer les Persons en deux catégories, Host et Guest.
 
 ## Capture d'écran de l'application finale
 
@@ -66,10 +66,10 @@ la partie de code à principalement été réalisé pas Adam et la partie de l'i
 ### Ressources
 
 pour voir le premier design (qui a changé entre temps)  
-[lien vers la maquette Figma)](https://www.figma.com/design/ZTCl0GuIiNFMQy3enEJdM5/Prototype_Application_SeaDev?node-id=0-1&p=f&t=96MRWDUvw573MIHx-0#-1)   
+[lien vers la maquette Figma)](https://www.figma.com/design/ZTCl0GuIiNFMQy3enEJdM5/Prototype_Application_SeaDev?node-id=0-1&p=f&t=96MRWDUvw573MIHx-0#-1)
 
 pour voir la contribution de chacun et de qui viens quel code  
-[lien vers le github](https://github.com/potatovitch/dev-clean)  
+[lien vers le github](https://github.com/potatovitch/dev-clean)
 
 ### Les membres du groupe ayant travaillé sur la partie IHM
 
