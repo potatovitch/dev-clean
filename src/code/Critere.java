@@ -6,18 +6,18 @@ import java.util.ArrayList;
 public abstract class Critere {
     private ArrayList<String> listHobbies;
     private ArrayList<LocalDate> historique;
-    private Gender gender;
-    private Gender pairGender;
+    protected Gender gender;        // Changé en protected pour accès depuis les sous-classes
+    protected Gender pairGender;    // Changé en protected pour accès depuis les sous-classes
 
-    public Critere(Gender gender, Gender paiGender, ArrayList<String> listHobbies, ArrayList<LocalDate> historique) {
-        this.listHobbies = listHobbies;
-        this.historique = historique;
+    public Critere(Gender gender, Gender pairGender, ArrayList<String> listHobbies, ArrayList<LocalDate> historique) {
+        this.listHobbies = listHobbies != null ? listHobbies : new ArrayList<>();
+        this.historique = historique != null ? historique : new ArrayList<>();
         this.gender = gender;
-        this.pairGender = paiGender;
+        this.pairGender = pairGender;
     }
 
-    public Critere(Gender gender, Gender paiGender) {
-        this(gender, paiGender, new ArrayList<String>() , new ArrayList<LocalDate>());
+    public Critere(Gender gender, Gender pairGender) {
+        this(gender, pairGender, new ArrayList<String>(), new ArrayList<LocalDate>());
     }
 
     public void addHobby(String hobby) {
@@ -25,11 +25,13 @@ public abstract class Critere {
             this.listHobbies.add(hobby);
         }
     }
+    
     public void addHobby(ArrayList<String> hobbies) {
         for (String hobby : hobbies) {
             addHobby(hobby);
         }
     }
+    
     public void addHistory(LocalDate date){
         historique.add(date);
     }
@@ -47,9 +49,11 @@ public abstract class Critere {
         return false;
     }
 
+    // Getters
     public ArrayList<String> getHobbies() {
         return listHobbies;
     }
+    
     public ArrayList<LocalDate> getHistorique() {
         return historique;
     }

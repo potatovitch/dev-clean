@@ -1,14 +1,16 @@
 package code;
 
 import java.time.LocalDate;
+import java.time.Period;
+
 public abstract class Person {
     private String nom;
     private String prenom;
     private LocalDate dNaiss;
     private Pays pays;
 
-    public boolean isHost;            // initialisé dans Host ou Guest
-    protected Critere critere;           // initialisé dans Host ou Guest
+    public boolean isHost;
+    protected Critere critere;
 
     public Person(String nom, String prenom, LocalDate dNaiss, Pays pays) {
         this.nom = nom;
@@ -17,30 +19,25 @@ public abstract class Person {
         this.pays = pays;
     }
 
-    /*
-     * donne l'écart d'age sous forme de date (un peu brouillon dans la logique)
+    /**
+     * Calcule l'écart d'âge en années entre deux personnes
      */
-    public LocalDate calculerEcartAge(Person p) {
-        if (this.dNaiss.compareTo(p.dNaiss) > 0){
-            return this.dNaiss.minusYears(p.dNaiss.getYear()).minusMonths(p.dNaiss.getMonthValue()).minusDays(p.dNaiss.getDayOfMonth());
-        }else if (this.dNaiss.compareTo(p.dNaiss) < 0){
-            return p.dNaiss.minusYears(this.dNaiss.getYear()).minusMonths(this.dNaiss.getMonthValue()).minusDays(this.dNaiss.getDayOfMonth());
-        }else{
-            return LocalDate.of(0, 0, 0);
-        }
+    public int calculerEcartAge(Person p) {
+        Period period = Period.between(this.dNaiss, p.dNaiss);
+        return Math.abs(period.getYears());
     }
 
-    public boolean isEcartTropGrand(Person p){
-        // 1 an et demi et un jour
-        return LocalDate.of(1, 6, 1).compareTo(dNaiss) < 0;
+    /**
+     * Vérifie si l'écart d'âge est trop important (plus de 2 ans)
+     */
+    public boolean isEcartTropGrand(Person p) {
+        return calculerEcartAge(p) > 2;
     }
 
     public abstract int calculerAffinite(Person p);
     public abstract boolean isCompatible(Person p);
     public abstract Critere getCriteres();
 
-
-    // Getters
     public String getNom() {
         return nom;
     }
@@ -57,5 +54,23 @@ public abstract class Person {
         return pays;
     }
 
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setDNaiss(LocalDate dNaiss) {
+        this.dNaiss = dNaiss;
+    }
+
+    public void setPays(Pays pays) {
+        this.pays = pays;
+    }
+
+    public boolean isHost() {
+        return this.isHost;
+    }
 }

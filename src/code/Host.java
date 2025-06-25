@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import appInterface.Controller;
+import appInterface.MainController;
 
 public class Host extends Person{
     
@@ -11,12 +12,11 @@ public class Host extends Person{
         super(nom, prenom, dNaiss, pays);
         super.isHost = true;
         super.critere = new HostCritere(gender, pairGender, hasAnimal, listHostFood);
-
     }
 
-     /**
+    /**
      * Vérifie si la personne respecte les contraintes redhibitoires
-     * le but est d'empêcher les appariements entre personnes qui ne sont stictement pas compatibles
+     * le but est d'empêcher les appariements entre personnes qui ne sont strictement pas compatibles
      */
     @Override     
     public boolean isCompatible(Person p) {
@@ -31,7 +31,7 @@ public class Host extends Person{
         if (!crit.getHistorique().isEmpty() && !pCrit.getHistorique().isEmpty()){
             for (LocalDate date : crit.getHistorique()) {
                 if (pCrit.getHistorique().contains(date)){
-                    return false;   // ce sont deja rencontrés
+                    return false;   // se sont déjà rencontrés
                 }
             }
         }
@@ -68,6 +68,3 @@ public class Host extends Person{
 	 }
 
 }
-
-
-
