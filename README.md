@@ -68,7 +68,7 @@ la partie de code à principalement été réalisé pas Adam et la partie de l'i
 pour voir le premier design (qui a changé entre temps)  
 [lien vers la maquette Figma)](https://www.figma.com/design/ZTCl0GuIiNFMQy3enEJdM5/Prototype_Application_SeaDev?node-id=0-1&p=f&t=96MRWDUvw573MIHx-0#-1)
 
-pour voir la contribution de chacun et de qui viens quel code  
+nous vous invitons vivement a voir la contribution de chacun et de qui viens quel code  
 [lien vers le github](https://github.com/potatovitch/dev-clean)
 
 ### Les membres du groupe ayant travaillé sur la partie IHM
