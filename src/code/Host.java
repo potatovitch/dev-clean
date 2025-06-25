@@ -2,11 +2,13 @@ package code;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import appInterface.Controller;
 import appInterface.MainController;
 
 public class Host extends Person{
     
-    public Host(String nom, String prenom, LocalDate dNaiss, Pays pays, Gender gender, Gender pairGender, boolean hasAnimal, ArrayList<String> listHostFood) {
+    public Host(String nom, String prenom, LocalDate dNaiss, Pays pays, Gender gender, Gender pairGender, boolean hasAnimal, ArrayList<Food> listHostFood) {
         super(nom, prenom, dNaiss, pays);
         super.isHost = true;
         super.critere = new HostCritere(gender, pairGender, hasAnimal, listHostFood);
@@ -19,10 +21,7 @@ public class Host extends Person{
     @Override     
     public boolean isCompatible(Person p) {
         if (p.getClass() == Host.class) {
-            return false; // ne pas apparier deux hosts
-        }
-        if (this.isEcartTropGrand(p)){
-            return false;
+            return false; // ne pas apparier deux guests
         }
         HostCritere crit = (HostCritere)this.getCriteres();
         GuestCritere pCrit = (GuestCritere)p.getCriteres();
@@ -40,8 +39,9 @@ public class Host extends Person{
         return true;
     }
     
-    /**
-     * Calcule l'affinité entre deux personnes (plus le score est élevé, plus l'affinité est bonne)
+
+     /**
+     * Calcul l'affinité entre deux personnes
      * le but est de calculer l'affinité entre deux personnes pour les apparier ensuite de manière optimale
      */
     @Override 
@@ -49,6 +49,7 @@ public class Host extends Person{
         int affinite = 0;
         HostCritere crit = (HostCritere)this.getCriteres();
         GuestCritere pCrit = (GuestCritere)p.getCriteres();
+<<<<<<< HEAD
         
         if (crit.isGoodPairingGender(pCrit)){
             affinite += (int)MainController.getPoidsGender();
@@ -67,13 +68,24 @@ public class Host extends Person{
             affinite += (int)MainController.getPoidsAge();
         } else if (ecartAge == 1) {
             affinite += (int)(MainController.getPoidsAge() * 0.5);
+=======
+        if (!crit.isGoodPairingGender(pCrit)){
+            affinite += Controller.getPoidsGender();
+        }
+        if (!crit.isGoodPairingHobbies(pCrit)){
+            affinite += Controller.getPoidsHobby();
+        }
+        if (this.isEcartTropGrand(p)){
+            affinite += Controller.getPoidsAge();
+>>>>>>> 9a24f3c0624cfd78d824ce2ea21d360993d76345
         }
         
         return affinite;
     }
 
-    @Override
-    public Critere getCriteres() {
-        return critere;
-    }
+	 @Override
+	 public Critere getCriteres() {
+		return critere;
+	 }
+
 }

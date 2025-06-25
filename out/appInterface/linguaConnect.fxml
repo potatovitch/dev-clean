@@ -107,10 +107,6 @@
                                         <Slider fx:id="genderSlider" min="0.0" max="20.0" value="10.0" majorTickUnit="5.0" minorTickCount="4" showTickMarks="true" showTickLabels="true" snapToTicks="true" blockIncrement="1.0" prefWidth="300" />
                                     </HBox>
                                     <HBox spacing="10" alignment="CENTER_LEFT">
-                                        <Label text="Poids nourriture :" minWidth="120" />
-                                        <Slider fx:id="foodSlider" min="0.0" max="20.0" value="10.0" majorTickUnit="5.0" minorTickCount="4" showTickMarks="true" showTickLabels="true" snapToTicks="true" blockIncrement="1.0" prefWidth="300" />
-                                    </HBox>
-                                    <HBox spacing="10" alignment="CENTER_LEFT">
                                         <Label text="Poids âge :" minWidth="120" />
                                         <Slider fx:id="ageSlider" min="0.0" max="20.0" value="10.0" majorTickUnit="5.0" minorTickCount="4" showTickMarks="true" showTickLabels="true" snapToTicks="true" blockIncrement="1.0" prefWidth="300" />
                                     </HBox>

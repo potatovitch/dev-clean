@@ -3,7 +3,7 @@ package code;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Critere {
+public abstract class Critere {
     private ArrayList<String> listHobbies;
     private ArrayList<LocalDate> historique;
     protected Gender gender;        
@@ -56,12 +56,21 @@ public class Critere {
     public ArrayList<LocalDate> getHistorique() {
         return historique;
     }
-    
+
+    public ArrayList<String> getListHobbies() {
+        return listHobbies;
+    }
+
     public Gender getGender() {
         return gender;
     }
-    
+
     public Gender getPairGender() {
         return pairGender;
     }
+
+    public abstract boolean getAnimal();
+    public abstract String toStringFood();
+
+    
 }
