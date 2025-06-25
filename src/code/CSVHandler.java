@@ -22,26 +22,12 @@ public class CSVHandler {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write("Nom,Prénom,Date de Naissance,Pays,Est Hôte,Genre,Genre Recherché,Animal/Allergie,Nourriture\n");
             for (Person p : Plateform.getListPersonnesStatic()) {
-                StringBuilder foodList = new StringBuilder();
-                if (p.isHost) {
-                    Critere crit = p.critere;
-                    for (String food : crit.listHostFood) {
-                        if (foodList.length() > 0) foodList.append(";");
-                        foodList.append(food);
-                    }
-                    writer.write(p.getNom() + "," + p.getPrenom() + "," + p.getdNaiss() + "," + 
-                               p.getPays() + ",true," + crit.gender + "," + crit.pairGender + "," + 
-                               crit.hasAnimal + "," + foodList.toString() + "\n");
-                } else {
-                    Critere crit = p.critere;
-                    for (String food : crit.listGuestFoodConstraint) {
-                        if (foodList.length() > 0) foodList.append(";");
-                        foodList.append(food);
-                    }
-                    writer.write(p.getNom() + "," + p.getPrenom() + "," + p.getdNaiss() + "," + 
-                               p.getPays() + ",false," + crit.gender + "," + crit.pairGender + "," + 
-                               crit.hasAllergy + "," + foodList.toString() + "\n");
-                }
+                Critere crit = p.critere;
+                writer.write(p.getNom() + ";" + p.getPrenom() + ";" + p.getdNaiss() + ";" + p.getPays() + p.isHost + crit.gender + ";" + crit.pairGender + ";" + 
+                               crit.hasAllergy + ";" + crit.hasAnimal + ";" + crit.toStringGuestFoodConstraint() + ";"
+                               + crit.toStringHostFood() + ";"+ crit.toStringHobbies() + ";"+ crit.toStringHistory()
+                               + "\n");
+                
             }
         } catch (IOException e) {
             System.err.println("Erreur lors de la sauvegarde des personnes: " + e.getMessage());
