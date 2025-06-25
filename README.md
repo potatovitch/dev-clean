@@ -19,6 +19,8 @@ il y a 6 classes dans cette partie :
 
 #### Person
 
+
+
 #### Pair
 
 #### Plateform
@@ -27,7 +29,8 @@ il y a 6 classes dans cette partie :
 
 #### CSVHandler
 
-#### Pays
+classe qui permet de load ou de save les etudiants et paires depuis et dans des fichiers csv.
+
 
 ## Capture d'écran de l'application finale
 
