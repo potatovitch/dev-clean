@@ -371,10 +371,10 @@ public class Controller implements Initializable {
         DatePicker dateNaissancePicker = new DatePicker();
         ComboBox<Pays> paysCombo = new ComboBox<>();
         paysCombo.getItems().setAll(Pays.values());
-        ComboBox<Gender> genderCombo = new ComboBox<>();
-        genderCombo.getItems().setAll(Gender.values());
-        ComboBox<Gender> pairGenderCombo = new ComboBox<>();
-        pairGenderCombo.getItems().setAll(Gender.values());
+        ComboBox<String> genderCombo = new ComboBox<>();
+        genderCombo.getItems().setAll("Male","Female","Non-Binary");
+        ComboBox<String> pairGenderCombo = new ComboBox<>();
+        pairGenderCombo.getItems().setAll("Male","Female","Non-Binary");
         CheckBox isHostCheckBox = new CheckBox("Est un hôte");
 
         if (existingPerson != null) {
@@ -405,8 +405,8 @@ public class Controller implements Initializable {
                     String nom = nomField.getText().trim();
                     LocalDate dateNaissance = dateNaissancePicker.getValue();
                     Pays pays = paysCombo.getValue();
-                    Gender gender = genderCombo.getValue();
-                    Gender pairGender = pairGenderCombo.getValue();
+                    String gender = genderCombo.getValue();
+                    String pairGender = pairGenderCombo.getValue();
                     boolean isHost = isHostCheckBox.isSelected();
 
                     if (prenom.isEmpty() || nom.isEmpty() || dateNaissance == null || 
