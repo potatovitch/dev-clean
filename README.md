@@ -4,7 +4,7 @@
 
 ## explication des classes
 
-le dévellopement de ce projet à été divisé en deux parties principales, le code et l'interface.
+le développement de ce projet à été divisé en deux parties principales, le code et l'interface.
 
 ### Code
 
@@ -19,23 +19,33 @@ il y a 6 classes dans cette partie :
 
 #### Person
 
-
+classe abstraite définissant des guests et des hosts.
 
 #### Pair
 
+classe gérant les appariement.
+
 #### Plateform
 
+classe s'occupant d'une bonne partie des fonctions du controller.
+
 #### Critere
+
+classe gérant les critéres permettant de mettre en relation les adolescents.
 
 #### CSVHandler
 
 classe qui permet de load ou de save les etudiants et paires depuis et dans des fichiers csv.
 
+#### Pays
+
+enum contenant les pays.
 
 ## Capture d'écran de l'application finale
 
-![Capture d'écran de l'application](chemin/vers/image.ext)
-__mettre des captures__
+![Capture d'écran de la fenêtre gestion de l'application](gestion.png)
+![Capture d'écran de la fenêtre appariement de l'application](appariement.png)
+![Capture d'écran de la fenêtre configuration de l'application](gestion.png)
 
 ## Nos choix de conception
 
@@ -46,13 +56,9 @@ Afin de ne pas surcharger les utilsateurs d'informations, nous avons décider de
 
 la partie de code à principalement été réalisé pas Adam et la partie de l'interface par Martin.
 
-## Informations mettant en valeur notre travail
-
-## Autre (changer le nom)
-
 ### Ressources
 
-[lien vers la maquette Figma]()  
+[lien vers la maquette Figma](https://www.figma.com/design/ZTCl0GuIiNFMQy3enEJdM5/Prototype_Application_SeaDev?node-id=0-1&p=f&t=96MRWDUvw573MIHx-0#-1)  
 
 ### Les membres du groupe ayant travaillé sur la partie IHM
 
