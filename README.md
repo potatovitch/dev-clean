@@ -26,6 +26,7 @@ Pour cela, nous avons choisi de mettre les information concernant la personne et
 #### Pair
 
 Classe qui permet l'association de deux personnes, avec en personne 1 l'hôte, et en personne 2, le visiteur.
+
 #### Plateform
 
 classe s'occupant d'une bonne partie des fonctions du controller.
