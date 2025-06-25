@@ -76,7 +76,6 @@ public class CSVHandler {
             String line;
             boolean firstLine = true;
             while ((line = reader.readLine()) != null) {
-<<<<<<< HEAD
                 if (firstLine) {
                     firstLine = false;
                     continue;
@@ -100,32 +99,6 @@ public class CSVHandler {
                                 listFood.add(food.trim());
                             }
                         }
-=======
-                String[] cells = line.split(", ");
-                if (cells.length == 9) {    // neuf colonnes attendues
-                    String nom = cells[0];  // premier élément : nom
-                    String prenom = cells[1]; // deuxième élément : prénom
-                    LocalDate dNaiss = LocalDate.parse(cells[2]);   // troisième élément : date de naissance
-                    Pays pays = Pays.valueOf(cells[3]); // quatrième élément : pays
-                    boolean isHost;          // cinquieme élément : est un host ?
-                    if (cells[4].equals("yes")){
-                        isHost = true;
-                    }else{
-                        isHost = false;
-                    }
-                    Gender gender = Gender.valueOf(cells[5]);             // sixieme element : genre de la personne
-                    Gender pairGender = Gender.valueOf(cells[6]);         // septieme element : genre du correspondant
-                    boolean animal;
-                    if (cells[7].equals("yes")){                          // huitieme element : hasAnimal ou hasAllergy (en foncion de la personne)
-                        animal = true;
-                    }else{
-                        animal = false;
-                    }
-                    ArrayList<Food> listFood = new ArrayList<Food>();       // neuvieme element : GuestFood ou HostFood (en foncion de la personne)
-                    String[] temp = cells[8].split(", ");
-                    for (String food : temp) {
-                        listFood.add(Food.valueOf(food));
->>>>>>> 9a24f3c0624cfd78d824ce2ea21d360993d76345
                     }
 
                     if (isHost){                // creation des personnes

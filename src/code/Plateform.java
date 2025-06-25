@@ -1,6 +1,7 @@
 package code;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Plateform {
     private ArrayList<Person> listPersonnes;
@@ -116,10 +117,10 @@ public class Plateform {
     public void appariementOptimise() {
         this.listPairs.clear();
         staticListPairs.clear();
-        
+
         ArrayList<Person> hosts = new ArrayList<>();
         ArrayList<Person> guests = new ArrayList<>();
-        
+
         for (Person p : listPersonnes) {
             if (p.isHost) {
                 hosts.add(p);
@@ -127,28 +128,43 @@ public class Plateform {
                 guests.add(p);
             }
         }
-        
-        ArrayList<Person> hostsUtilises = new ArrayList<>();
-        
+
+        class CandidatePair {
+            Person host;
+            Person guest;
+            int affinite;
+
+            CandidatePair(Person h, Person g, int a) {
+                host = h;
+                guest = g;
+                affinite = a;
+            }
+        }
+
+        ArrayList<CandidatePair> allPairs = new ArrayList<>();
+
         for (Person guest : guests) {
-            Person meilleurHost = null;
-            int meilleureAffinite = -1;
-            
             for (Person host : hosts) {
-                if (!hostsUtilises.contains(host) && host.isCompatible(guest)) {
-                    int affinite = host.calculerAffinite(guest);
-                    if (affinite > meilleureAffinite) {
-                        meilleureAffinite = affinite;
-                        meilleurHost = host;
-                    }
+                if (host.isCompatible(guest)) {
+                    int aff = host.calculerAffinite(guest);
+                    allPairs.add(new CandidatePair(host, guest, aff));
                 }
             }
-            
-            if (meilleurHost != null) {
-                Pair nouvellePaire = new Pair(meilleurHost, guest);
+        }
+
+        allPairs.sort((p1, p2) -> Integer.compare(p2.affinite, p1.affinite));
+
+        HashSet<Person> hostsUsed = new HashSet<>();
+        HashSet<Person> guestsUsed = new HashSet<>();
+
+        for (CandidatePair cp : allPairs) {
+            if (!hostsUsed.contains(cp.host) && !guestsUsed.contains(cp.guest)) {
+                Pair nouvellePaire = new Pair(cp.host, cp.guest);
                 addPair(nouvellePaire);
-                hostsUtilises.add(meilleurHost);
+                hostsUsed.add(cp.host);
+                guestsUsed.add(cp.guest);
             }
         }
     }
+
 }

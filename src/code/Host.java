@@ -49,7 +49,6 @@ public class Host extends Person{
         int affinite = 0;
         HostCritere crit = (HostCritere)this.getCriteres();
         GuestCritere pCrit = (GuestCritere)p.getCriteres();
-<<<<<<< HEAD
         
         if (crit.isGoodPairingGender(pCrit)){
             affinite += (int)MainController.getPoidsGender();
@@ -68,16 +67,6 @@ public class Host extends Person{
             affinite += (int)MainController.getPoidsAge();
         } else if (ecartAge == 1) {
             affinite += (int)(MainController.getPoidsAge() * 0.5);
-=======
-        if (!crit.isGoodPairingGender(pCrit)){
-            affinite += Controller.getPoidsGender();
-        }
-        if (!crit.isGoodPairingHobbies(pCrit)){
-            affinite += Controller.getPoidsHobby();
-        }
-        if (this.isEcartTropGrand(p)){
-            affinite += Controller.getPoidsAge();
->>>>>>> 9a24f3c0624cfd78d824ce2ea21d360993d76345
         }
         
         return affinite;
