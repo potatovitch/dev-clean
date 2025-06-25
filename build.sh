@@ -1,6 +1,6 @@
 #!/bin/bash
 
-JAVAFX_PATH="/home/iutinfo/S2/javafx-sdk-21.0.7/lib"
+JAVAFX_PATH="lib"
 MAIN_CLASS="appInterface.MainApp"
 JAR_NAME="LinguaConnect.jar"
 SRC_DIR="src"

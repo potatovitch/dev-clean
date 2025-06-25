@@ -2,7 +2,7 @@ package code;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import appInterface.Controller;
+import appInterface.MainController;
 
 public class Host extends Person{
     
@@ -52,25 +52,25 @@ public class Host extends Person{
         
         // Bonus pour compatibilité de genre
         if (crit.isGoodPairingGender(pCrit)){
-            affinite += (int)Controller.getPoidsGender();
+            affinite += (int)MainController.getPoidsGender();
         }
         
         // Bonus pour hobbies en commun
         if (crit.isGoodPairingHobbies(pCrit)){
-            affinite += (int)Controller.getPoidsHobby();
+            affinite += (int)MainController.getPoidsHobby();
         }
         
         // Bonus pour compatibilité alimentaire
         if (crit.isGoodFood(pCrit)){
-            affinite += (int)Controller.getPoidsFood();
+            affinite += (int)MainController.getPoidsFood();
         }
         
         // Bonus pour âge proche (moins l'écart est grand, plus le bonus est important)
         int ecartAge = this.calculerEcartAge(p);
         if (ecartAge == 0) {
-            affinite += (int)Controller.getPoidsAge();
+            affinite += (int)MainController.getPoidsAge();
         } else if (ecartAge == 1) {
-            affinite += (int)(Controller.getPoidsAge() * 0.5);
+            affinite += (int)(MainController.getPoidsAge() * 0.5);
         }
         
         return affinite;

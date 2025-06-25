@@ -9,8 +9,8 @@ public abstract class Person {
     private LocalDate dNaiss;
     private Pays pays;
 
-    public boolean isHost;            // initialisé dans Host ou Guest
-    protected Critere critere;           // initialisé dans Host ou Guest
+    public boolean isHost;
+    protected Critere critere;
 
     public Person(String nom, String prenom, LocalDate dNaiss, Pays pays) {
         this.nom = nom;
@@ -38,7 +38,6 @@ public abstract class Person {
     public abstract boolean isCompatible(Person p);
     public abstract Critere getCriteres();
 
-    // Getters
     public String getNom() {
         return nom;
     }
@@ -55,7 +54,6 @@ public abstract class Person {
         return pays;
     }
 
-    // Setters pour permettre la modification
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -70,5 +68,9 @@ public abstract class Person {
 
     public void setPays(Pays pays) {
         this.pays = pays;
+    }
+
+    public boolean isHost() {
+        return this.isHost;
     }
 }
