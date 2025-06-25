@@ -9,8 +9,6 @@ import javafx.scene.control.TableView;
 
 import code.CSVHandler;
 import code.Gender;
-import code.Guest;
-import code.Host;
 import code.Pays;
 import code.Person;
 import code.Plateform;

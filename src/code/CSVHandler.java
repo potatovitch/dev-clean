@@ -24,23 +24,23 @@ public class CSVHandler {
             for (Person p : Plateform.getListPersonnesStatic()) {
                 StringBuilder foodList = new StringBuilder();
                 if (p.isHost) {
-                    HostCritere crit = (HostCritere) p.getCriteres();
-                    for (Food food : crit.getListHostFood()) {
+                    Critere crit = p.critere;
+                    for (String food : crit.listHostFood) {
                         if (foodList.length() > 0) foodList.append(";");
                         foodList.append(food);
                     }
                     writer.write(p.getNom() + "," + p.getPrenom() + "," + p.getdNaiss() + "," + 
                                p.getPays() + ",true," + crit.gender + "," + crit.pairGender + "," + 
-                               crit.aUnAnimal() + "," + foodList.toString() + "\n");
+                               crit.hasAnimal + "," + foodList.toString() + "\n");
                 } else {
-                    GuestCritere crit = (GuestCritere) p.getCriteres();
-                    for (Food food : crit.getListGuestFood()) {
+                    Critere crit = p.critere;
+                    for (String food : crit.listGuestFoodConstraint) {
                         if (foodList.length() > 0) foodList.append(";");
                         foodList.append(food);
                     }
                     writer.write(p.getNom() + "," + p.getPrenom() + "," + p.getdNaiss() + "," + 
                                p.getPays() + ",false," + crit.gender + "," + crit.pairGender + "," + 
-                               crit.estAllergique() + "," + foodList.toString() + "\n");
+                               crit.hasAllergy + "," + foodList.toString() + "\n");
                 }
             }
         } catch (IOException e) {
@@ -74,10 +74,9 @@ public class CSVHandler {
         ArrayList<Person> persons = new ArrayList<Person>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
-            boolean firstLine = true;
             while ((line = reader.readLine()) != null) {
                 String[] cells = line.split(", ");
-                if (cells.length == 9) {    // neuf colonnes attendues
+                if (cells.length == 13) {    // dix colonnes attendues
                     String nom = cells[0];  // premier élément : nom
                     String prenom = cells[1]; // deuxième élément : prénom
                     LocalDate dNaiss = LocalDate.parse(cells[2]);   // troisième élément : date de naissance
@@ -88,25 +87,50 @@ public class CSVHandler {
                     }else{
                         isHost = false;
                     }
-                    Gender gender = Gender.valueOf(cells[5]);             // sixieme element : genre de la personne
-                    Gender pairGender = Gender.valueOf(cells[6]);         // septieme element : genre du correspondant
-                    boolean animal;
+                    String gender = cells[5];             // sixieme element : genre de la personne
+                    String pairGender = cells[6];         // septieme element : genre du correspondant
+                    boolean hasAllergy;
                     if (cells[7].equals("yes")){                          // huitieme element : hasAnimal ou hasAllergy (en foncion de la personne)
-                        animal = true;
+                        hasAllergy = true;
                     }else{
-                        animal = false;
-                    }
-                    ArrayList<Food> listFood = new ArrayList<Food>();       // neuvieme element : GuestFood ou HostFood (en foncion de la personne)
-                    String[] temp = cells[8].split(", ");
-                    for (String food : temp) {
-                        listFood.add(Food.valueOf(food));
+                        hasAllergy = false;
                     }
 
-                    if (isHost){                // creation des personnes
-                        persons.add(new Host(nom, prenom, dNaiss, pays, gender, pairGender, animal, listFood)); 
+                    boolean hasAnimal;
+                    if (cells[8].equals("yes")){                          // huitieme element : hasAnimal ou hasAllergy (en foncion de la personne)
+                        hasAnimal = true;
                     }else{
-                        persons.add(new Guest(nom, prenom, dNaiss, pays, gender, pairGender, animal, listFood));
+                        hasAnimal = false;
                     }
+
+                    ArrayList<String> listGuestFoodConstraint = new ArrayList<String>();       // neuvieme element : GuestFood ou HostFood (en foncion de la personne)
+                    String[] tempConstraint = cells[9].split(", ");
+                    for (String food : tempConstraint) {
+                        listGuestFoodConstraint.add(food);
+                    }
+
+                    ArrayList<String> listHostFood = new ArrayList<String>();       // neuvieme element : GuestFood ou HostFood (en foncion de la personne)
+                    String[] tempHostFood = cells[10].split(", ");
+                    for (String food : tempHostFood) {
+                        listHostFood.add(food);
+                    }
+
+                    ArrayList<String> listHobbies = new ArrayList<String>();       // neuvieme element : GuestFood ou HostFood (en foncion de la personne)
+                    String[] tempHobby = cells[11].split(", ");
+                    for (String hobby : tempHobby) {
+                        listHobbies.add(hobby);
+                    }
+
+
+                    ArrayList<String> listHistory = new ArrayList<String>();       // neuvieme element : GuestFood ou HostFood (en foncion de la personne)
+                    String[] tempHistory = cells[12].split(", ");
+                    for (String history : tempHistory) {
+                        listHistory.add(history);
+                    }
+
+                    // creation des personnes
+                    persons.add(new Person(nom, prenom, dNaiss, pays, isHost, new Critere(gender, pairGender, hasAllergy, hasAnimal,
+                                                                listGuestFoodConstraint, listHostFood, listHobbies, listHobbies)));
                 }
             }
         } catch (Exception e) {

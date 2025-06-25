@@ -3,16 +3,11 @@ package code;
 import java.util.ArrayList;
 
 public class Plateform {
-    private ArrayList<Person> listPersonnes;
-    private ArrayList<Pair> listPairs;
+    private static ArrayList<Person> listPersonnes = new ArrayList<Person>();
+    private static ArrayList<Pair> listPairs = new ArrayList<Pair>();
     
-    // Variables statiques pour les méthodes statiques
-    private static ArrayList<Person> staticListPersonnes = new ArrayList<>();
-    private static ArrayList<Pair> staticListPairs = new ArrayList<>();
 
     public Plateform() {
-        this.listPersonnes = new ArrayList<>();
-        this.listPairs = new ArrayList<>();
         try {
             loadFromCSV();
         } catch (Exception e) {
@@ -24,18 +19,14 @@ public class Plateform {
     public void loadFromCSV() {
         ArrayList<Pair> loadedPairs = loadPairsFromCSV("paires.csv");
         if (loadedPairs != null) {
-            this.listPairs.clear();
-            this.listPairs.addAll(loadedPairs);
-            staticListPairs.clear();
-            staticListPairs.addAll(loadedPairs);
+            listPairs.clear();
+            listPairs.addAll(loadedPairs);
         }
 
         ArrayList<Person> loadedPersons = loadPersonsFromCSV("personnes.csv");
         if (loadedPersons != null) {
-            this.listPersonnes.clear();
-            this.listPersonnes.addAll(loadedPersons);
-            staticListPersonnes.clear();
-            staticListPersonnes.addAll(loadedPersons);
+            listPersonnes.clear();
+            listPersonnes.addAll(loadedPersons);
         }
     }
 
@@ -48,53 +39,53 @@ public class Plateform {
     }
 
     public boolean addPerson(Person p) {
-        boolean added = this.listPersonnes.add(p);
+        boolean added = listPersonnes.add(p);
         if (added) {
-            staticListPersonnes.add(p);
+            listPersonnes.add(p);
         }
         System.out.println("Ajout personne : " + p.getPrenom() + " " + p.getNom());
         return added;
     }
 
     public boolean addPair(Pair p) {
-        boolean added = this.listPairs.add(p);
+        boolean added = listPairs.add(p);
         if (added) {
-            staticListPairs.add(p);
+            listPairs.add(p);
         }
         return added;
     }
 
     public boolean removePerson(Person p) {
-        boolean removed = this.listPersonnes.remove(p);
+        boolean removed = listPersonnes.remove(p);
         if (removed) {
-            staticListPersonnes.remove(p);
+            listPersonnes.remove(p);
         }
         return removed;
     }
 
     public boolean removePair(Pair p) {
-        boolean removed = this.listPairs.remove(p);
+        boolean removed = listPairs.remove(p);
         if (removed) {
-            staticListPairs.remove(p);
+            listPairs.remove(p);
         }
         return removed;
     }
 
     public ArrayList<Person> getListPersonnes() {
-        return this.listPersonnes;
+        return listPersonnes;
     }
 
     public ArrayList<Pair> getListPairs() {
-        return this.listPairs;
+        return listPairs;
     }
 
     // Méthodes statiques requises par CSVHandler
     public static ArrayList<Person> getListPersonnesStatic() {
-        return staticListPersonnes;
+        return listPersonnes;
     }
 
     public static ArrayList<Pair> getListPairsStatic() {
-        return staticListPairs;
+        return listPairs;
     }
 
     public Person findPersonByName(String nom) {
@@ -107,7 +98,7 @@ public class Plateform {
     }
 
     public static Person findPersonByNameStatic(String nom) {
-        for (Person p : staticListPersonnes) {
+        for (Person p : listPersonnes) {
             if (p.getNom().equals(nom)) {
                 return p;
             }
@@ -117,8 +108,8 @@ public class Plateform {
 
     public void appariementOptimise() {
         // Vider la liste des paires existantes
-        this.listPairs.clear();
-        staticListPairs.clear();
+        listPairs.clear();
+        listPairs.clear();
         
         ArrayList<Person> hosts = new ArrayList<>();
         ArrayList<Person> guests = new ArrayList<>();
@@ -137,12 +128,12 @@ public class Plateform {
         
         for (Person guest : guests) {
             Person meilleurHost = null;
-            int meilleureAffinite = -1;
+            int meilleureAffinite = 999;
             
             for (Person host : hosts) {
                 if (!hostsUtilises.contains(host) && host.isCompatible(guest)) {
                     int affinite = host.calculerAffinite(guest);
-                    if (affinite > meilleureAffinite) {
+                    if (affinite < meilleureAffinite) {
                         meilleureAffinite = affinite;
                         meilleurHost = host;
                     }
@@ -156,4 +147,6 @@ public class Plateform {
             }
         }
     }
+
+
 }

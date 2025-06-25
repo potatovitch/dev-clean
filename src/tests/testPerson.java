@@ -6,20 +6,16 @@ import java.util.HashMap;
 
 import code.Critere;
 import code.Gender;
-import code.Guest;
-import code.Host;
+
 import code.Pays;
 import code.Person;
 
+@SuppressWarnings("unused")
 public class testPerson {
 
     // pas de tests pour l'instant //
     public static void main(String[] args) {
-        @SuppressWarnings("unused")
-        Person host = new Host("Doe", "John", LocalDate.of(1990, 1, 1), Pays.FRANCE, Gender.MALE, Gender.MALE, false, null);
-        @SuppressWarnings("unused")
-        Person guest = new Guest("Smith", "Jane", LocalDate.of(1992, 2, 2), Pays.ALLEMAGNE, Gender.FEMALE, Gender.FEMALE, false, null);
-
+        
         @SuppressWarnings("unused")
         HashMap<Critere, String> criteresHost = new HashMap<Critere, String>();
         //criteresHost.put(Critere.HOST_HAS_ANIMAL, "true");
@@ -39,6 +35,9 @@ public class testPerson {
         ArrayList<String> hobbiesGuest = new ArrayList<String>();
         //hobbiesGuest.add(Hobby.HOBBY1.getLabel());
         //hobbiesGuest.add(Hobby.HOBBY3.getLabel());
+
+
+        
 
         
     }

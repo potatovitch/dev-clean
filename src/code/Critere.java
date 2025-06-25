@@ -1,40 +1,69 @@
 package code;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
-public abstract class Critere {
-    private ArrayList<String> listHobbies;
-    private ArrayList<LocalDate> historique;
-    protected Gender gender;        // Changé en protected pour accès depuis les sous-classes
-    protected Gender pairGender;    // Changé en protected pour accès depuis les sous-classes
+public class Critere {
+    protected String gender;        // Changé en protected pour accès depuis les autres-classes
+    protected String pairGender;    // Changé en protected pour accès depuis les autres-classes
+    protected boolean hasAllergy;
+    protected boolean hasAnimal;
 
-    public Critere(Gender gender, Gender pairGender, ArrayList<String> listHobbies, ArrayList<LocalDate> historique) {
-        this.listHobbies = listHobbies != null ? listHobbies : new ArrayList<>();
-        this.historique = historique != null ? historique : new ArrayList<>();
+    protected ArrayList<String> listGuestFoodConstraint;
+    protected ArrayList<String> listHostFood;
+    protected ArrayList<String> listHobbies;
+    protected ArrayList<String> historique;           // liste des correspondants
+
+
+    public Critere(String gender, String pairGender, boolean hasAllergy, boolean hasAnimal,
+                    ArrayList<String> listGuestFoodConstraint, ArrayList<String> listHostFood,
+                    ArrayList<String> listHobbies, ArrayList<String> historique) {
         this.gender = gender;
         this.pairGender = pairGender;
+        this.hasAllergy = hasAllergy;
+        this.hasAnimal = hasAnimal;
+        
+        this.listGuestFoodConstraint = listGuestFoodConstraint;
+        this.listHostFood = listHostFood;
+        this.listHobbies = listHobbies != null ? listHobbies : new ArrayList<>();
+        this.historique = historique != null ? historique : new ArrayList<>();
     }
 
-    public Critere(Gender gender, Gender pairGender) {
-        this(gender, pairGender, new ArrayList<String>(), new ArrayList<LocalDate>());
+    public String toStringGuestFoodConstraint() {
+        String ch = "";
+        for (String food : listGuestFoodConstraint) {
+            ch += food + ',';
+        }
+        return trimList(ch);
     }
 
-    public void addHobby(String hobby) {
-        if (!this.listHobbies.contains(hobby)) {
-            this.listHobbies.add(hobby);
+    public String toStringHostFood() {
+        String ch = "";
+        for (String food : listHostFood) {
+            ch += food + ',';
         }
+        return trimList(ch);
     }
-    
-    public void addHobby(ArrayList<String> hobbies) {
-        for (String hobby : hobbies) {
-            addHobby(hobby);
+
+    public String toStringHobbies() {
+        String ch = "";
+        for (String food : listHobbies) {
+            ch += food + ',';
         }
+        return trimList(ch);
     }
-    
-    public void addHistory(LocalDate date){
-        historique.add(date);
+
+    public String toStringHistory() {
+        String ch = "";
+        for (String food : historique) {
+            ch += food + ',';
+        }
+        return trimList(ch);
     }
+
+    // pour retirer le dernier ","
+    public static String trimList(String ch){
+        return ch.substring(0, ch.length()-1);
+    } 
 
     public boolean isGoodPairingGender(Critere c){
         return this.pairGender.equals(c.gender) && this.gender.equals(c.pairGender);
@@ -54,7 +83,7 @@ public abstract class Critere {
         return listHobbies;
     }
     
-    public ArrayList<LocalDate> getHistorique() {
+    public ArrayList<String> getHistorique() {
         return historique;
     }
 
@@ -62,16 +91,12 @@ public abstract class Critere {
         return listHobbies;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public Gender getPairGender() {
+    public String getPairGender() {
         return pairGender;
     }
-
-    public abstract boolean getAnimal();
-    public abstract String toStringFood();
-
     
 }

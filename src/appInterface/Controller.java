@@ -416,9 +416,9 @@ public class Controller implements Initializable {
                     }
 
                     if (isHost) {
-                        return new Host(nom, prenom, dateNaissance, pays, gender, pairGender, false, new ArrayList<>());
+                        return new Person(nom, prenom, dateNaissance, pays, gender, pairGender, false, new ArrayList<>());
                     } else {
-                        return new Guest(nom, prenom, dateNaissance, pays, gender, pairGender, false, new ArrayList<>());
+                        return new Person(nom, prenom, dateNaissance, pays, gender, pairGender, false, new ArrayList<>());
                     }
                 } catch (Exception e) {
                     updateBotLabel("Erreur lors de la création de la personne: " + e.getMessage());
