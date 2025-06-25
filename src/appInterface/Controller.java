@@ -376,6 +376,14 @@ public class Controller implements Initializable {
         ComboBox<String> pairGenderCombo = new ComboBox<>();
         pairGenderCombo.getItems().setAll("Male","Female","Non-Binary");
         CheckBox isHostCheckBox = new CheckBox("Est un hôte");
+        CheckBox HasAllergyCheckBox = new CheckBox("Est allergique");
+        CheckBox hasAnimalCheckBox = new CheckBox("A un animal");
+        
+        TextField listGuestFoodConstraintTf = new TextField();
+        TextField listHostFoodTf = new TextField();
+        TextField listHobbiesTf = new TextField();
+        TextField historiqueTf = new TextField();
+        
 
         if (existingPerson != null) {
             prenomField.setText(existingPerson.getPrenom());
@@ -392,7 +400,13 @@ public class Controller implements Initializable {
             new Label("Pays:"), paysCombo,
             new Label("Genre:"), genderCombo,
             new Label("Genre recherché:"), pairGenderCombo,
-            isHostCheckBox
+            isHostCheckBox,
+            HasAllergyCheckBox,
+            hasAnimalCheckBox,
+            new Label("liste des contraintes alimentaires en tant qu'invité:"), listGuestFoodConstraintTf,
+            new Label("liste des contraintes alimentaires respectés en tant qu'hôte:"), listHostFoodTf,
+            new Label("liste des hobbies:"), listHobbiesTf,
+            new Label("historique des correspondants"), historiqueTf
         );
 
         dialog.getDialogPane().setContent(content);
@@ -408,6 +422,12 @@ public class Controller implements Initializable {
                     String gender = genderCombo.getValue();
                     String pairGender = pairGenderCombo.getValue();
                     boolean isHost = isHostCheckBox.isSelected();
+                    boolean hasAllergy = HasAllergyCheckBox.isSelected();
+                    boolean hasAnimal = hasAnimalCheckBox.isScaleShape();
+                    ArrayList<String> listGuestFoodConstraint = toArrayList(listGuestFoodConstraintTf.getText().trim());
+                    ArrayList<String> listHostFood = toArrayList(listHostFoodTf.getText().trim());
+                    ArrayList<String> listHobbies = toArrayList(listHobbiesTf.getText().trim());
+                    ArrayList<String> history = toArrayList(historiqueTf.getText().trim());
 
                     if (prenom.isEmpty() || nom.isEmpty() || dateNaissance == null || 
                         pays == null || gender == null || pairGender == null) {
@@ -415,11 +435,10 @@ public class Controller implements Initializable {
                         return null;
                     }
 
-                    if (isHost) {
-                        return new Person(nom, prenom, dateNaissance, pays, gender, pairGender, true, new ArrayList<String>());
-                    } else {
-                        return new Person(nom, prenom, dateNaissance, pays, gender, pairGender, false, new ArrayList<String>());
-                    }
+                    return new Person(nom, prenom, dateNaissance, pays, isHost, 
+                                    new Critere(gender, pairGender, hasAllergy, hasAnimal, 
+                                                listGuestFoodConstraint, listHostFood, 
+                                                listHobbies, history));
                 } catch (Exception e) {
                     updateBotLabel("Erreur lors de la création de la personne: " + e.getMessage());
                     return null;
@@ -429,6 +448,15 @@ public class Controller implements Initializable {
         });
 
         return dialog;
+    }
+
+    public ArrayList<String> toArrayList(String ch){
+        String[] temp = ch.split(", ");
+        ArrayList<String> aTemp =  new ArrayList<String>();
+        for (String elt : temp) {
+            aTemp.add(elt);
+        }
+        return aTemp;
     }
 
     /**
