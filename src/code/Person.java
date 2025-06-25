@@ -39,6 +39,7 @@ public abstract class Person {
     public abstract boolean isCompatible(Person p);
     public abstract Critere getCriteres();
 
+
     // Getters
     public String getNom() {
         return nom;

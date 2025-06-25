@@ -3,7 +3,7 @@ package code;
 public enum Gender {
     MALE("Male"),
     FEMALE("Female"),
-    NONBIN("Non-binaire");
+    OTHER("Other");
 
     Gender(String label){}
 

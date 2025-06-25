@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Guest extends Person{
 
-    public Guest(String nom, String prenom, LocalDate dNaiss, Pays pays, Gender gender, Gender pairGender, boolean hasAllergy, ArrayList<String> listGuestFood) {
+    public Guest(String nom, String prenom, LocalDate dNaiss, Pays pays, Gender gender, Gender pairGender, boolean hasAllergy, ArrayList<Food> listGuestFood) {
         super(nom, prenom, dNaiss, pays);
         super.isHost = false;
         super.critere = new GuestCritere(gender, pairGender, hasAllergy, listGuestFood);
@@ -26,7 +26,7 @@ public class Guest extends Person{
     
 
      /**
-     * Calcul l'affinité entre deux personnes ----->  TODO : mettre les variables des poids a par + rajouter la gestion de l'écart d'age
+     * Calcul l'affinité entre deux personnes
      * le but est de calculer l'affinité entre deux personnes pour les apparier ensuite de manière optimale
      */
     @Override     
@@ -38,4 +38,5 @@ public class Guest extends Person{
     public Critere getCriteres() {
         return critere;
     }
+
 }

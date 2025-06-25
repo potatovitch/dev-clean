@@ -26,7 +26,7 @@ public class Controller implements Initializable {
     private TabPane tabPane;
 
     @FXML
-    private Tab tabGestion, tabAppariement, tabConfiguration;
+    private Tab tabGestion, tabAppariement, tabAucunCoresp, tabConfiguration;
 
     @FXML
     private Label botLabel;
@@ -39,6 +39,14 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Person, String> prenomColumn, nomColumn, paysColumn, criteresColumn;
     
+    // tableau pour les personnes sans correspondant (dus au contraintes redhibitoires)
+    @FXML
+    private TableView<Person> aucunCorespTableView;
+    @FXML
+    private TableColumn<Person, String> aucunCorespCol;       // personne qui n'a pas pu avoir de correspondant
+    @FXML
+    private TableColumn<Person, String> listeContraintes;     // liste des contraintes qui ont empeche l'appariement avec les autres personnes
+
     @FXML
     private TableView<Pair> pairTableView;
     @FXML
@@ -47,7 +55,7 @@ public class Controller implements Initializable {
     private TableColumn<Pair, Integer> affiniteColumn;
     
     @FXML
-    private Slider hobbySlider, genderSlider, foodSlider, ageSlider;
+    private Slider hobbySlider, genderSlider, ageSlider;
 
     @FXML
     private VBox rightVBox;
@@ -63,8 +71,7 @@ public class Controller implements Initializable {
     
     private static double poidsHobby = 15.0;
     private static double poidsGender = 20.0;
-    private static double poidsFood = 10.0;
-    private static double poidsAge = 5.0;
+    private static double poidsAge = 10.0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -113,7 +120,6 @@ public class Controller implements Initializable {
     private void initializeSliders() {
         hobbySlider.setValue(poidsHobby);
         genderSlider.setValue(poidsGender);
-        foodSlider.setValue(poidsFood);
         ageSlider.setValue(poidsAge);
         
         hobbySlider.valueProperty().addListener((obs, oldVal, newVal) -> {
@@ -126,10 +132,6 @@ public class Controller implements Initializable {
             updateBotLabel("Poids genre mis à jour: " + String.format("%.1f", poidsGender));
         });
         
-        foodSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
-            poidsFood = newVal.doubleValue();
-            updateBotLabel("Poids nourriture mis à jour: " + String.format("%.1f", poidsFood));
-        });
         
         ageSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             poidsAge = newVal.doubleValue();
@@ -438,9 +440,6 @@ public class Controller implements Initializable {
     }
     public static double getPoidsGender() { 
         return poidsGender; 
-    }
-    public static double getPoidsFood() { 
-        return poidsFood; 
     }
     public static double getPoidsAge() { 
         return poidsAge; 

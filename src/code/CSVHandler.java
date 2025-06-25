@@ -22,7 +22,8 @@ public class CSVHandler {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write("Nom, Prénom, Date de Naissance, Pays\n");
             for (Person p : Plateform.getListPersonnesStatic()) {
-                writer.write(p.getNom() + ", " + p.getPrenom() + ", " + p.getdNaiss() + ", " + p.getPays() + "\n");
+                writer.write(p.getNom() + ", " + p.getPrenom() + ", " + p.getdNaiss() + ", " + p.getPays() + 
+                p.isHost + p.critere.getGender() + p.critere.getPairGender() + p.critere.getAnimal() + p.critere.getListHobbies() + "\n");
             }
         } catch (IOException e) {
             e.getMessage();
@@ -62,17 +63,27 @@ public class CSVHandler {
                     String prenom = cells[1]; // deuxième élément : prénom
                     LocalDate dNaiss = LocalDate.parse(cells[2]);   // troisième élément : date de naissance
                     Pays pays = Pays.valueOf(cells[3]); // quatrième élément : pays
-                    boolean isHost = Boolean.parseBoolean(cells[4]);      // cinquieme élément : est un host ?
+                    boolean isHost;          // cinquieme élément : est un host ?
+                    if (cells[4].equals("yes")){
+                        isHost = true;
+                    }else{
+                        isHost = false;
+                    }
                     Gender gender = Gender.valueOf(cells[5]);             // sixieme element : genre de la personne
                     Gender pairGender = Gender.valueOf(cells[6]);         // septieme element : genre du correspondant
-                    boolean animal = Boolean.parseBoolean(cells[7]);      // huitieme element : hasAnimal ou hasAllergy (en foncion de la personne)
-                    ArrayList<String> listFood = new ArrayList<String>();       // neuvieme element : GuestFood ou HostFood (en foncion de la personne)
+                    boolean animal;
+                    if (cells[7].equals("yes")){                          // huitieme element : hasAnimal ou hasAllergy (en foncion de la personne)
+                        animal = true;
+                    }else{
+                        animal = false;
+                    }
+                    ArrayList<Food> listFood = new ArrayList<Food>();       // neuvieme element : GuestFood ou HostFood (en foncion de la personne)
                     String[] temp = cells[8].split(", ");
                     for (String food : temp) {
-                        listFood.add(food);
+                        listFood.add(Food.valueOf(food));
                     }
 
-                    if (isHost){
+                    if (isHost){                // creation des personnes
                         persons.add(new Host(nom, prenom, dNaiss, pays, gender, pairGender, animal, listFood)); 
                     }else{
                         persons.add(new Guest(nom, prenom, dNaiss, pays, gender, pairGender, animal, listFood));

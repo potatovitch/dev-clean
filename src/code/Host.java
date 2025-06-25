@@ -3,9 +3,11 @@ package code;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import appInterface.Controller;
+
 public class Host extends Person{
     
-    public Host(String nom, String prenom, LocalDate dNaiss, Pays pays, Gender gender, Gender pairGender, boolean hasAnimal, ArrayList<String> listHostFood) {
+    public Host(String nom, String prenom, LocalDate dNaiss, Pays pays, Gender gender, Gender pairGender, boolean hasAnimal, ArrayList<Food> listHostFood) {
         super(nom, prenom, dNaiss, pays);
         super.isHost = true;
         super.critere = new HostCritere(gender, pairGender, hasAnimal, listHostFood);
@@ -20,9 +22,6 @@ public class Host extends Person{
     public boolean isCompatible(Person p) {
         if (p.getClass() == Host.class) {
             return false; // ne pas apparier deux guests
-        }
-        if (this.isEcartTropGrand(p)){
-            return false;
         }
         HostCritere crit = (HostCritere)this.getCriteres();
         GuestCritere pCrit = (GuestCritere)p.getCriteres();
@@ -42,7 +41,7 @@ public class Host extends Person{
     
 
      /**
-     * Calcul l'affinité entre deux personnes ----->  TODO : mettre les variables des poids a par + rajouter la gestion de l'écart d'age
+     * Calcul l'affinité entre deux personnes
      * le but est de calculer l'affinité entre deux personnes pour les apparier ensuite de manière optimale
      */
     @Override 
@@ -51,22 +50,23 @@ public class Host extends Person{
         HostCritere crit = (HostCritere)this.getCriteres();
         GuestCritere pCrit = (GuestCritere)p.getCriteres();
         if (!crit.isGoodPairingGender(pCrit)){
-            affinite += 20;
+            affinite += Controller.getPoidsGender();
         }
         if (!crit.isGoodPairingHobbies(pCrit)){
-            affinite += 15;
+            affinite += Controller.getPoidsHobby();
         }
-        if (!crit.isGoodFood(pCrit)){
-            affinite += 10;
+        if (this.isEcartTropGrand(p)){
+            affinite += Controller.getPoidsAge();
         }
         
         return affinite;
     }
 
-    @Override
-    public Critere getCriteres() {
-        return critere;
-    }
+	 @Override
+	 public Critere getCriteres() {
+		return critere;
+	 }
+
 }
 
 
