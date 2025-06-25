@@ -44,7 +44,7 @@ CSVHandler est la classe qui permet de load ou de save les etudiants et paires d
 
 #### changements au cour du projet
 
-nous avons décidé de repartir de zéro pour cette version du projet, et de repenser/restructurer ce que nous avions fait. nous avons choisi de séparer les Persons en deux catégories, Host et Guest.
+nous avons décidé de repartir de zéro pour cette version du projet, et de repenser/restructurer ce que nous avions fait. nous avons choisi de séparer les Persons en deux catégories, Host et Guest, héritant de Person. nous avons ensuite créé CritereGuest et CritereHost héritant de Critere. Nous avons ensuite décidé de créer plusieur enum dont le role été de gere les diferents critères. Nous rendant compte par la suite que cette maniere de faire ne satisfaisait pas le cahier des charges du projet, nous avons du réorganiser le projet. l'enum Pays est un véstige de cette partie du dévellopement.
 
 ## Capture d'écran de l'application finale
 
