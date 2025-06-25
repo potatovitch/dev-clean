@@ -58,12 +58,18 @@ public class Person {
         infoPersonnes.put("history", critere.toStringHistory());
     }
 
-    public String toStringBool(boolean b){
+    public static String toStringBool(boolean b){
         if (b){
             return "yes";
         }
         return "no";
     }
+
+    public static boolean toBoolString(String ch){
+        if (ch.equals("yes")){
+            return true;
+        }return false;
+    } 
 
     public boolean isCompatible(Person p){
         if (this.isHost == p.isHost){

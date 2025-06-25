@@ -19,11 +19,9 @@ il y a 6 classes dans cette partie :
 
 #### Person
 
-classe abstraite définissant des guests et des hosts.
+
 
 #### Pair
-
-classe gérant les appariement.
 
 #### Plateform
 
