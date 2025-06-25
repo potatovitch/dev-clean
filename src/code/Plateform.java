@@ -1,12 +1,10 @@
 package code;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class Plateform {
     private static ArrayList<Person> listPersonnes = new ArrayList<Person>();
     private static ArrayList<Pair> listPairs = new ArrayList<Pair>();
-    
 
     public Plateform() {
         try {
@@ -122,41 +120,7 @@ public class Plateform {
             }
         }
 
-        class CandidatePair {
-            Person host;
-            Person guest;
-            int affinite;
-
-            CandidatePair(Person h, Person g, int a) {
-                host = h;
-                guest = g;
-                affinite = a;
-            }
-        }
-
-        ArrayList<CandidatePair> allPairs = new ArrayList<>();
-
-        for (Person guest : guests) {
-            Person meilleurHost = null;
-            int meilleureAffinite = 999;
-            
-            for (Person host : hosts) {
-                if (!hostsUtilises.contains(host) && host.isCompatible(guest)) {
-                    int affinite = host.calculerAffinite(guest);
-                    if (affinite < meilleureAffinite) {
-                        meilleureAffinite = affinite;
-                        meilleurHost = host;
-                    }
-                }
-            }
-            
-            if (meilleurHost != null) {
-                Pair nouvellePaire = new Pair(meilleurHost, guest);
-                addPair(nouvellePaire);
-                hostsUsed.add(cp.host);
-                guestsUsed.add(cp.guest);
-            }
-        }
+        
     }
 
 
