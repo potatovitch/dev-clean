@@ -78,7 +78,6 @@ public class Critere {
         return false;
     }
 
-    // Getters
     public ArrayList<String> getHobbies() {
         return listHobbies;
     }

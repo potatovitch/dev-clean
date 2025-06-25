@@ -1,6 +1,7 @@
 package code;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Plateform {
     private static ArrayList<Person> listPersonnes = new ArrayList<Person>();
@@ -79,7 +80,6 @@ public class Plateform {
         return listPairs;
     }
 
-    // Méthodes statiques requises par CSVHandler
     public static ArrayList<Person> getListPersonnesStatic() {
         return listPersonnes;
     }
@@ -113,8 +113,7 @@ public class Plateform {
         
         ArrayList<Person> hosts = new ArrayList<>();
         ArrayList<Person> guests = new ArrayList<>();
-        
-        // Séparer les hosts et guests
+
         for (Person p : listPersonnes) {
             if (p.isHost) {
                 hosts.add(p);
@@ -122,10 +121,21 @@ public class Plateform {
                 guests.add(p);
             }
         }
-        
-        // Appariement simple : pour chaque guest, trouver le meilleur host compatible
-        ArrayList<Person> hostsUtilises = new ArrayList<>();
-        
+
+        class CandidatePair {
+            Person host;
+            Person guest;
+            int affinite;
+
+            CandidatePair(Person h, Person g, int a) {
+                host = h;
+                guest = g;
+                affinite = a;
+            }
+        }
+
+        ArrayList<CandidatePair> allPairs = new ArrayList<>();
+
         for (Person guest : guests) {
             Person meilleurHost = null;
             int meilleureAffinite = 999;
@@ -143,7 +153,8 @@ public class Plateform {
             if (meilleurHost != null) {
                 Pair nouvellePaire = new Pair(meilleurHost, guest);
                 addPair(nouvellePaire);
-                hostsUtilises.add(meilleurHost);
+                hostsUsed.add(cp.host);
+                guestsUsed.add(cp.guest);
             }
         }
     }
